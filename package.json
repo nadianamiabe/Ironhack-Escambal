@@ -1,0 +1,32 @@
+{
+  "name": "ironhack-escambal",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/namiabe/Ironhack-Escambal.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/namiabe/Ironhack-Escambal/issues"
+  },
+  "homepage": "https://github.com/namiabe/Ironhack-Escambal#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "connect-mongo": "^3.0.0",
+    "cookie-parser": "^1.4.4",
+    "dotenv": "^8.1.0",
+    "express": "^4.17.1",
+    "express-session": "^1.16.2",
+    "hbs": "^4.0.4",
+    "mongoose": "^5.7.0",
+    "morgan": "^1.9.1",
+    "node-sass-middleware": "^0.11.0",
+    "path": "^0.12.7"
+  }
+}
