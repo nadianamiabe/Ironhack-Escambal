@@ -1,14 +1,14 @@
 require('dotenv').config();
 
-const express = require('express');
-const mongoose = require('mongoose');
-const session = require('express-session');
-const MongoStore = require('connect-mongo')(session);
-const logger = require('morgan');
-const path = require('path');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
+const express = require('express');
 const hbs = require('hbs');
+const mongoose = require('mongoose');
+const logger = require('morgan');
+const path = require('path');
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
 
 mongoose
   .connect('mongodb://localhost/escambalApp', { useNewUrlParser: true })
@@ -46,5 +46,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 const index = require('./routes/public/index');
 
 app.use('/', index);
+
+app.listen(3000, () => {
+  console.log('My lab application listening on port 3000!');
+});
 
 module.exports = app;
