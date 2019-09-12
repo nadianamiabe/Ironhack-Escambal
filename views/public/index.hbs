@@ -1,1 +1,14 @@
-<h1>Esta funcionando</h1>
+<nav>
+    {{#unless email}}
+    <a href="/login">Log in Now!</a>
+    <a href="/signup">Signup</a>
+    {{else}}
+    <a href="/events">My Profile</a>
+    <a href="/logout">Logout</a>
+    {{/unless}}
+    <a href="/about">Sobre</a>
+    <a href="/categories">Produtos</a>
+</nav>
+<div class="container">
+    <h1 class="title">Bem vindx ao Escambal</h1>
+</div>

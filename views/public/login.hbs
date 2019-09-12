@@ -1,0 +1,15 @@
+<section class="login-section">
+    <div class="login">
+        <h1>Login</h1>
+        <form action="/login" method="POST">
+            <input type="text" name="email" placeholder="Email">
+            <br>
+            <input type="password" name="password" placeholder="Senha">
+            <br>
+            {{#if errorMessage}}
+            <p>{{errorMessage}}</p>
+            {{/if}}
+            <button class="crazy-button" type="submit">Login</button>
+        </form>
+    </div>
+</section>

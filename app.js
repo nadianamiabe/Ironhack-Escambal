@@ -30,6 +30,17 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+app.use(
+  session({
+    secret: 'basic-auth-secret',
+    cookie: { maxAge: 60000000 },
+    store: new MongoStore({
+      mongooseConnection: mongoose.connection,
+      ttl: 24 * 60 * 60, // 1 day
+    }),
+  }),
+);
+
 // express view engine setup
 app.use(
   require('node-sass-middleware')({
@@ -44,8 +55,10 @@ app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, 'public')));
 
 const index = require('./routes/public/index');
+const authRoutes = require('./routes/public/authRoutes');
 
 app.use('/', index);
+app.use('/', authRoutes);
 
 app.listen(3000, () => {
   console.log('My lab application listening on port 3000!');

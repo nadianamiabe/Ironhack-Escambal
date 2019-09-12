@@ -1,0 +1,25 @@
+<section class="login-section">
+    <div class="login">
+        <h1>Signup</h1>
+        <form action="/signup" method="POST">
+            <input type="text" name="name" placeholder="Digite seu nome.">
+            <br>
+            <input type="text" name="email" placeholder="Email.">
+            <br>
+            <input type="password" name="password" placeholder="Crie sua senha.">
+            <br>
+            <input type="number" name="cpf" placeholder="Digite seu CPF.">
+            <br>
+            <input type="text" name="city" placeholder="Digite sua cidade.">
+            <br>
+            <input type="text" name="adress" placeholder="Endereço.">
+            <br>
+            <input type="number" name="phoneNumber" placeholder="(DDD)XXXXXXXXX">
+            <br>
+            {{#if errorMessage}}
+            <p>{{errorMessage}}</p>
+            {{/if}}
+            <button class="crazy-button" type="submit" hre >Signup Now!</button>
+        </form>
+    </div>
+</section>
