@@ -30,11 +30,14 @@ router.post('/signup', async (req, res) => {
   if (user) {
     res.render('public/signup', { errorMessage: 'Este email já está registrado.' });
   }
+  // if (user.cpf) {
+  //   res.render('public/signup', { errorMessage: 'Este CPF já está registrado.' });
+  // }
 
-  //   const user = await User.findOne({ cpf });
-  //   if (user) {
-  //     res.render('public/signup', { errorMessage: 'Este CPF já está registrado.' });
-  //   }
+  // const x = await User.findOne({ cpf });
+  // if (x) {
+  //   res.render('public/signup', { errorMessage: 'Este CPF já está registrado.' });
+  // }
 
   const salt = bcrypt.genSaltSync(saltRounds);
   const hash = bcrypt.hashSync(password, salt);

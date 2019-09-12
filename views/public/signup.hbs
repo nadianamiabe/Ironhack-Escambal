@@ -10,16 +10,24 @@
             <br>
             <input type="number" name="cpf" placeholder="Digite seu CPF.">
             <br>
-            <input type="text" name="city" placeholder="Digite sua cidade.">
+            <input type="text" name="adress.state" placeholder="Estado">
             <br>
-            <input type="text" name="adress" placeholder="Endereço.">
+            <input type="text" name="adress.city" placeholder="Digite sua cidade.">
+            <br>
+            <input type="text" name="adress.road" placeholder="Rua.">
+            <br>
+            <input type="number" name="adress.number" placeholder="Número.">
+            <br>
+            <input type="text" name="adress.complement" placeholder="Complemento.">
+            <br>
+            <input type="text" name="adress.cep" placeholder="CEP">
             <br>
             <input type="number" name="phoneNumber" placeholder="(DDD)XXXXXXXXX">
             <br>
             {{#if errorMessage}}
             <p>{{errorMessage}}</p>
             {{/if}}
-            <button class="crazy-button" type="submit" hre >Signup Now!</button>
+            <button class="crazy-button" type="submit" hre>Signup Now!</button>
         </form>
     </div>
 </section>
