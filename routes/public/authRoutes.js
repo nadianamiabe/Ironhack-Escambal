@@ -11,44 +11,48 @@ router.get('/signup', (req, res) => {
 
 router.post('/signup', async (req, res) => {
   const {
-    name, email, password, city, cpf, phoneNumber, adress,
+    name,
+    email,
+    password,
+    cpf,
+    phoneNumber,
+    state,
+    city,
+    road,
+    complement,
+    cep,
+    number,
   } = req.body;
-  if (
-    name === ''
-    || email === ''
-    || password === ''
-    || city === ''
-    || cpf === ''
-    || phoneNumber === ''
-    || adress === ''
-  ) {
+  console.log(req.body);
+  if (name === '' || email === '' || password === '' || cpf === '' || phoneNumber === '') {
     res.render('public/signup', { erroMessage: 'Por favor, preencha todos os campos.' });
     return;
   }
 
   const user = await User.findOne({ email });
+  console.log(user);
   if (user) {
     res.render('public/signup', { errorMessage: 'Este email já está registrado.' });
+    return;
   }
-  // if (user.cpf) {
-  //   res.render('public/signup', { errorMessage: 'Este CPF já está registrado.' });
-  // }
-
-  // const x = await User.findOne({ cpf });
-  // if (x) {
-  //   res.render('public/signup', { errorMessage: 'Este CPF já está registrado.' });
-  // }
 
   const salt = bcrypt.genSaltSync(saltRounds);
   const hash = bcrypt.hashSync(password, salt);
+  const address = {
+    state,
+    city,
+    road,
+    number,
+    cep,
+    complement,
+  };
   const newUser = new User({
     name,
     email,
     password: hash,
-    city,
     cpf,
     phoneNumber,
-    adress,
+    address,
   });
 
   try {
@@ -90,9 +94,13 @@ router.get('/logout', (req, res) => {
     if (error) {
       console.log(error);
     } else {
-      res.redirect('/');
+      res.redirect('/login');
     }
   });
+});
+
+router.get('/my-profile', (req, res) => {
+  res.render('public/my-profile');
 });
 
 module.exports = router;
