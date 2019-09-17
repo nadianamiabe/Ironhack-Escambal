@@ -12,4 +12,6 @@ router.get("/my-profile/products", async (req, res, next) => {
   res.render("private/products");
 });
 
+router.get("");
+
 module.exports = router;
