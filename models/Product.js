@@ -17,7 +17,7 @@ const productSchema = new Schema({
     ]
   },
   user: { type: Schema.Types.ObjectId, ref: "User" },
-  imageUrl: { type: String, required: true },
+  imageUrl: { type: String },
   quantity: { type: Number, min: 1, required: true },
   status: {
     type: String,
