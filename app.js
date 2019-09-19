@@ -60,7 +60,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 const index = require("./routes/public/index");
 const authRoutes = require("./routes/public/authRoutes");
-const userArea = require("./routes/private/userArea");
+const userArea = require("./routes/private/myProfile");
 
 app.use("/", index);
 app.use("/", authRoutes);

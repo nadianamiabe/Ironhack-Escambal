@@ -1,1 +1,11 @@
 <h1><a href="/products/insert-product">Adicione um produto</a></h1>
+
+{{#each products}}
+<h1><a href="/products/{{_id}}">{{name}}</a></h1>
+<p>{{description}}</p>
+<p>{{category}}</p>
+<p>{{quantity}}</p>
+
+<button><a href="/products/{{_id}}/delete" />Deletar</a></button>
+<button><a href="/products/{{_id}}/edit" />Editar</a></button>
+{{/each}}

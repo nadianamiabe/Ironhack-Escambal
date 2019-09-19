@@ -1,13 +1,13 @@
 <h1>{{title}}</h1>
 <br>
-<form action="/products" method="POST">
+<form action="/products/{{_id}}" method="POST">
     <label for="name">Nome:
     </label>
-    <input type="text" name="name" id="name">
+    <input type="text" name="name" id="name" value="{{name}}">
     <br>
     <label for="occupation">Descrição:
     </label>
-    <input type="text" name="description" id="description">
+    <input type="text" name="description" id="description" value="{{description}}">
     <br>
 
     <label for="category">Categoria</label>
@@ -23,7 +23,7 @@
 
     <label for="quantity">Quantidade:
     </label>
-    <input type="number" name="quantity" id="quantity">
+    <input type="number" name="quantity" id="quantity" value="{{quantity}}">
     <br>
-    <button type="submit">Salvar</button>
+    <button type="submit">Editar</button>
 </form>
