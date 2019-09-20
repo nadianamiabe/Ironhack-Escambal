@@ -1,21 +1,26 @@
-const express = require('express');
+const express = require("express");
 
 const router = express.Router();
+const Product = require("../../models/Product");
 
 /* GET home page */
-router.get('/', (req, res) => {
-  res.render('public/index');
+router.get("/", (req, res) => {
+  res.render("public/index");
 });
 
-router.get('/about', (req, res) => {
-  res.render('public/about');
+router.get("/about", (req, res) => {
+  res.render("public/about");
 });
 
-router.get('/categories', (req, res) => {
-  res.render('public/categories');
+router.get("/products", async (req, res, next) => {
+  console.log(req.body);
+
+  try {
+    const products = await Product.find();
+    res.render("public/products", { products });
+  } catch (error) {
+    console.log(error);
+  }
 });
 
-router.get('/categories/products', (req, res) => {
-  res.render('public/products');
-});
 module.exports = router;

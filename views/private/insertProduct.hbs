@@ -1,6 +1,6 @@
 <h1>{{title}}</h1>
 <br>
-<form action="/products" method="POST">
+<form action="/my-products" method="POST">
     <label for="name">Nome:
     </label>
     <input type="text" name="name" id="name">
@@ -25,5 +25,7 @@
     </label>
     <input type="number" name="quantity" id="quantity">
     <br>
+    <input type="hidden" name="user" value="{{user}}">
+
     <button type="submit">Salvar</button>
 </form>
