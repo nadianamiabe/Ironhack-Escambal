@@ -1,18 +1,33 @@
 const express = require("express");
 const router = express.Router();
 const Product = require("../../models/Product");
+const User = require("../../models/User");
 
 router.get("/home", async (req, res) => {
   res.render("private/home");
 });
+
+router.get("/products/:id", async (req, res, next) => {
+  const { id } = req.params;
+  try {
+    const product = await Product.findById(id);
+    res.render("private/products-details", product);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 router.get("/my-profile", async (req, res, next) => {
   res.render("private/my-profile");
 });
 
-router.get("/my-profile/products", async (req, res, next) => {
+router.get("/my-profile/my-products", async (req, res, next) => {
+  const userId = req.session.currentUser._id;
+
   try {
-    const products = await Product.find();
-    res.render("private/products", { products });
+    const products = await Product.find({ user: userId });
+
+    res.render("private/my-products", { products });
   } catch (error) {
     console.log(error);
   }
@@ -26,18 +41,28 @@ router.get("/my-profile/my-offers", async (req, res, next) => {
   res.render("private/my-offers");
 });
 
-router.get("/products/insert-product", async (req, res, next) => {
+router.get("/my-products/insert-product", async (req, res, next) => {
   res.render("private/insertProduct");
 });
 
-router.post("/products", async (req, res, next) => {
-  const newProduct = new Product(req.body);
-  console.log(newProduct);
+router.post("/my-products", async (req, res, next) => {
+  const { name, description, quantity, category, user } = req.body;
+  // const user = req.session.currentUser._id;
+  console.log(req.body);
+  console.log(user);
+
+  const newProduct = new Product({
+    name,
+    description,
+    quantity,
+    category,
+    user: req.session.currentUser._id
+  });
   newProduct
     .save()
     .then(() => {
       console.log(`Product ${newProduct} created`);
-      res.redirect("my-profile/products");
+      res.redirect(`my-profile/my-products/`);
     })
     .catch(error => {
       res.render("private/insertProduct");
@@ -45,27 +70,27 @@ router.post("/products", async (req, res, next) => {
     });
 });
 
-router.get("/products/:id", async (req, res) => {
+router.get("/my-products/:id", async (req, res) => {
   const { id } = req.params;
   try {
     const product = await Product.findById(id);
-    res.render("private/products-details", product);
+    res.render("private/my-products-details", product);
   } catch (error) {
     console.log(error);
   }
 });
 
-router.get("/products/:id/delete", async (req, res) => {
+router.get("/my-products/:id/delete", async (req, res) => {
   const { id } = req.params;
   try {
     await Product.findByIdAndDelete(id);
-    res.redirect("/my-profile/products");
+    res.redirect("/my-profile/my-products");
   } catch (error) {
     console.log(error);
   }
 });
 
-router.get("/products/:id/edit", async (req, res, next) => {
+router.get("/my-products/:id/edit", async (req, res, next) => {
   const { id } = req.params;
   try {
     const product = await Product.findById(id);
@@ -75,12 +100,12 @@ router.get("/products/:id/edit", async (req, res, next) => {
   }
 });
 
-router.post("/products/:id", async (req, res, next) => {
+router.post("/my-products/:id", async (req, res, next) => {
   const { id } = req.params;
   const product = req.body;
   try {
     await Product.findByIdAndUpdate(id, product);
-    res.redirect("/my-profile/products");
+    res.redirect("/my-profile/my-products");
   } catch (error) {
     console.log(error);
   }
