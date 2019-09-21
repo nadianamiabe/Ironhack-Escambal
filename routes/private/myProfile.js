@@ -11,7 +11,12 @@ router.get("/products/:id", async (req, res, next) => {
   const { id } = req.params;
   try {
     const product = await Product.findById(id);
-    res.render("private/products-details", product);
+    const user = await User.findById(product.user);
+
+    const productUser = Object.assign({}, user, { product: product });
+    console.log(productUser);
+
+    res.render("private/products-details", productUser);
   } catch (error) {
     console.log(error);
   }
