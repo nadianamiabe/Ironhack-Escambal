@@ -2,6 +2,8 @@ const express = require("express");
 
 const router = express.Router();
 const Product = require("../../models/Product");
+const User = require("../../models/User");
+const ProductUser = require("../../models/ProductUser");
 
 /* GET home page */
 router.get("/", (req, res) => {
@@ -12,12 +14,37 @@ router.get("/about", (req, res) => {
   res.render("public/about");
 });
 
-router.get("/products", async (req, res, next) => {
-  console.log(req.body);
+let products;
+
+router.get("/products", async (req, res1, next) => {
+  var MongoClient = require("mongodb").MongoClient;
+  var url = "mongodb://localhost/escambalApp";
 
   try {
-    const products = await Product.find();
-    res.render("public/products", { products });
+    MongoClient.connect(url, function(err, db) {
+      if (err) throw err;
+      var dbo = db.db("escambalApp");
+
+      dbo
+        .collection("products")
+        .aggregate([
+          {
+            $lookup: {
+              from: "users",
+              localField: "user",
+              foreignField: "_id",
+              as: "productUser"
+            }
+          }
+        ])
+        .toArray(function(err, res) {
+          if (err) throw err;
+          console.log(res);
+
+          res1.render("public/products", { res });
+          db.close();
+        });
+    });
   } catch (error) {
     console.log(error);
   }
