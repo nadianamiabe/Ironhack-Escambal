@@ -1,9 +1,43 @@
 {{#each res}}
-<h1><a href="/products/{{_id}}">{{name}}</a></h1>
+<h1><a href="/products/{{_id}}" data-toggle="modal" data-target="#meuModal">{{name}}</a></h1>
 <p>{{description}}</p>
 <p>{{category}}</p>
 <p>{{quantity}}</p>
 {{!-- <h1>{{productUser.[0].name}}</h1>
 <h1>{{productUser.[0]._id}}</h1> --}}
+class="btn btn-success btn-lg mt-2 class="btn btn-success btn-lg mt-2 ml-2"ml-2"
+<div id="meuModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Conteúdo do modal-->
+        <div class="modal-content">
+
+            <!-- Cabeçalho do modal -->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Corpo do modal -->class="btn btn-success btn-lg mt-2 ml-2"
+            <div class="modal-body">
+                <form action="/login" method="POST">
+                    <input type="text" name="email" placeholder="Email">
+                    <br>
+                    <input type="password" name="password" placeholder="Senha">
+                    <br>
+                    {{#if errorMessage}}
+                    <p>{{errorMessage}}</p>
+                    {{/if}}
+                    <button class="crazy-button" type="submit">Entrar</button>
+                </form>
+            </div>
+
+            <!-- Rodapé do modal-->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+            </div>
+
+        </div>
+    </div>
+</div>
 
 {{/each}}

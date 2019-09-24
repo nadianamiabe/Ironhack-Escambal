@@ -100,7 +100,7 @@ router.get("/my-products/:id/edit", async (req, res, next) => {
   try {
     const product = await Product.findById(id);
     res.render("private/edit-product", product);
-  } catch (error) {
+  } catch (error) {user
     console.log(error);
   }
 });
