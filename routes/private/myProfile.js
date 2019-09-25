@@ -14,7 +14,6 @@ router.get("/products/:id", async (req, res, next) => {
     const user = await User.findById(product.user);
 
     const productUser = Object.assign({}, user, { product: product });
-    console.log(productUser);
 
     res.render("private/products-details", productUser);
   } catch (error) {
@@ -100,7 +99,8 @@ router.get("/my-products/:id/edit", async (req, res, next) => {
   try {
     const product = await Product.findById(id);
     res.render("private/edit-product", product);
-  } catch (error) {user
+  } catch (error) {
+    user;
     console.log(error);
   }
 });
@@ -111,6 +111,20 @@ router.post("/my-products/:id", async (req, res, next) => {
   try {
     await Product.findByIdAndUpdate(id, product);
     res.redirect("/my-profile/my-products");
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+router.get("/order/:id", async (req, res, next) => {
+  const { id } = req.params;
+  const userId = req.session.currentUser;
+  try {
+    const productOrder = await Product.findById(id);
+    const userProduct = await Product.find({ user: userId });
+    console.log(userProduct);
+
+    res.render("private/order", { productOrder, userProduct });
   } catch (error) {
     console.log(error);
   }
