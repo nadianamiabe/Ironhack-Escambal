@@ -5,8 +5,8 @@ const { Schema } = mongoose;
 const orderSchema = new Schema({
   myProducts: [{ type: Schema.Types.ObjectId, ref: "Product" }],
   userProducts: [{ type: Schema.Types.ObjectId, ref: "Product" }],
-  myUserId: { type: Schema.Types.ObjectId, ref: "User" },
-  userId: { type: Schema.Types.ObjectId, ref: "User" },
+  userId: { type: Array },
+  myUser: { type: Schema.Types.ObjectId, ref: "User" },
   orderDate: { type: Date, default: Date.now() }
 });
 
