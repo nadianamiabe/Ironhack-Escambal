@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Product = require("../../models/Product");
 const User = require("../../models/User");
+const Order = require("../../models/Order");
 
 router.get("/home", async (req, res) => {
   res.render("private/home");
@@ -100,7 +101,6 @@ router.get("/my-products/:id/edit", async (req, res, next) => {
     const product = await Product.findById(id);
     res.render("private/edit-product", product);
   } catch (error) {
-    user;
     console.log(error);
   }
 });
@@ -122,12 +122,44 @@ router.get("/order/:id", async (req, res, next) => {
   try {
     const productOrder = await Product.findById(id);
     const userProduct = await Product.find({ user: userId });
-    console.log(userProduct);
 
     res.render("private/order", { productOrder, userProduct });
   } catch (error) {
     console.log(error);
   }
+});
+
+router.post("/order", async (req, res, next) => {
+  const { userProducts, userId } = req.body;
+  const myProducts = [];
+  console.log("$$$$$$$$$$$$$$$$$$$$4", req.body);
+  const body = req.body;
+  const keys = Object.keys(req.body);
+
+  // const teste = Object.values(req.body);
+  keys.forEach(key => {
+    if (body[key] === "on") {
+      myProducts.push(key);
+    }
+  });
+  console.log(myProducts);
+
+  const newOrder = new Order({
+    myProducts,
+    userProducts,
+    userId,
+    myUser: req.session.currentUser._id
+  });
+  newOrder
+    .save()
+    .then(() => {
+      console.log(`Order ${newOrder} created`);
+      res.redirect("/my-profile/my-products");
+    })
+    .catch(error => {
+      res.render("private/home");
+      console.log(error);
+    });
 });
 
 module.exports = router;

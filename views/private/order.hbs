@@ -1,10 +1,23 @@
-<h2>Produto escolhido</h2>
-{{#each productOrder}}
-<h3>{{name}}</h3>
+<form action="/order" method="POST">
 
-{{/each}}
-<h2>Meus produtos</h2>
-{{#each userProduct}}
-<h1>{{name}}</h1>
-{{/each}}
-<button>Escambal!</button>
+    <h2>Produto escolhido</h2>
+    <h3>{{productOrder.name}}</h3>
+    <input type="hidden" name="userProducts" id="userProducts" value="{{productOrder._id}}">
+    <input type="hidden" name="userId" id="userId" value="{{productOrder.user}}">
+
+    <h2>Meus produtos</h2>
+    {{#each userProduct}}
+    <h3>{{name}}</h3>
+    <input type="checkbox" name="{{_id}}">
+    {{!-- <input type="hidden" name="myUserId" id="myUserId" value="{{user}}"> --}}
+    {{!-- <input type="hidden" name="myProducts" id="myProducts" value="{{_id}}"> --}}
+
+
+    {{/each}}
+    <input type="hidden" name="myUser" value="{{myUser}}">
+
+
+
+    <button type="submit">Escambal!</button>
+
+</form>
