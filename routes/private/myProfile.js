@@ -8,6 +8,21 @@ router.get("/home", async (req, res) => {
   res.render("private/home");
 });
 
+router.get("/home/products", async (req, res) => {
+  const userId = req.session.currentUser._id;
+  const usersProducts = [];
+  try {
+    const products = await Product.find();
+    console.log(userId);
+    for (let i = 0; i < products.length; i++) {
+      if (products[i].user != userId) {
+        usersProducts.push(products[i]);
+      }
+    }
+    res.render("private/home-products", { usersProducts });
+  } catch (error) {}
+});
+
 router.get("/products/:id", async (req, res, next) => {
   const { id } = req.params;
   try {
