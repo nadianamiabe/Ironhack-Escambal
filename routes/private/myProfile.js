@@ -13,7 +13,6 @@ router.get("/home/products", async (req, res) => {
   const usersProducts = [];
   try {
     const products = await Product.find();
-    console.log(userId);
     for (let i = 0; i < products.length; i++) {
       if (products[i].user != userId) {
         usersProducts.push(products[i]);
@@ -21,6 +20,29 @@ router.get("/home/products", async (req, res) => {
     }
     res.render("private/home-products", { usersProducts });
   } catch (error) {}
+});
+
+router.post("/home/products", async (req, res) => {
+  const { category } = req.body;
+  const userId = req.session.currentUser._id;
+  const usersProducts = [];
+  const products = await Product.find();
+  for (let i = 0; i < products.length; i++) {
+    if (products[i].user != userId) {
+      usersProducts.push(products[i]);
+    }
+  }
+
+  try {
+    const filteredProducts = usersProducts.filter(product =>
+      product.category.toLowerCase().includes(category.toLowerCase())
+    );
+    console.log(filteredProducts);
+
+    res.render("private/filtered-products", { products: filteredProducts });
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 router.get("/products/:id", async (req, res, next) => {

@@ -1,3 +1,18 @@
+<form class="form" action="/home/products" method="POST">
+    {{!-- <input type="text" name="category" placeholder="Filtre por categorias"> --}}
+    <select name="category" id="category">
+        <option value="Eletrônicos e materiais de escritório">Eletrônicos e materiais de escritório</option>
+        <option value="Esporte e Lazer">Esporte e Lazer</option>
+        <option value="Vestuário e Acessórios">Vestuário e Acessórios</option>
+        <option value="Casa, Cozinha e Jardim">Casa, Cozinha e Jardim</option>
+        <option value="Beleza e Cuidados pessoais">Beleza e Cuidados pessoais</option>
+        <option value="Outros">Outros</option>
+    </select>
+    <button type="submit">Filtrar</button>
+</form>
+
+
+
 {{#each usersProducts}}
 <h1><a href="/products/{{_id}}">{{name}}</a></h1>
 <p>{{description}}</p>

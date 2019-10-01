@@ -50,4 +50,19 @@ router.get("/products", async (req, res1, next) => {
   }
 });
 
+router.post("/products", async (req, res) => {
+  const { category } = req.body;
+  try {
+    const products = await Product.find();
+    const filteredProducts = products.filter(product =>
+      product.category.toLowerCase().includes(category.toLowerCase())
+    );
+    console.log(filteredProducts);
+
+    res.render("public/filtered-products", { products: filteredProducts });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 module.exports = router;
