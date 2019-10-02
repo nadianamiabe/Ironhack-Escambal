@@ -1,1 +1,21 @@
+{{!-- {{#each userProductsArray}}
+<h2>{{name}}</h2>
+<p>{{_id}}</p>
+<p>{{user}}</p>
+{{/each}}
+
+{{#each myProductsArray}}
+<h2>{{name}}</h2>
+<p>{{_id}}</p>
+<p>{{user}}</p>
+{{/each}} --}}
+
 <h1>Ofertas</h1>
+
+{{#each orders}}
+<h2>{{myUser.name}} quer ofertar:</h2>
+<h2>{{myProducts.[0].name}}</h2>
+<br>
+<h2>por: {{userProducts.[0].name}}</h2>
+<br>
+{{/each}}
