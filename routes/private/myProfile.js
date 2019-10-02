@@ -52,6 +52,7 @@ router.get("/products/:id", async (req, res, next) => {
     const user = await User.findById(product.user);
 
     const productUser = Object.assign({}, user, { product: product });
+    console.log(productUser);
 
     res.render("private/products-details", productUser);
   } catch (error) {
@@ -80,7 +81,54 @@ router.get("/my-profile/pending", async (req, res, next) => {
 });
 
 router.get("/my-profile/my-offers", async (req, res, next) => {
-  res.render("private/my-offers");
+  const currentUser = req.session.currentUser._id;
+
+  try {
+    const orders = await Order.find({
+      userId: currentUser
+    })
+      .populate("userProducts")
+      .populate("myProducts")
+      .populate("myUser");
+    console.log(orders[0].myUser);
+    // const myProducts = await Product.findById(orders.find(currentUser));
+    // console.log(myProducts);
+
+    res.render("private/my-offers", { orders });
+  } catch (error) {
+    console.log(error);
+  }
+
+  // const currentUser = req.session.currentUser._id;
+  // const userProductsArray = [];
+  // const myProductsArray = [];
+
+  // const orders = await Order.find();
+
+  // const products = await Product.find();
+  // try {
+  //   for (let i = 0; i < orders.length; i++) {
+  //     if (currentUser === orders[i].userId[0]) {
+  //       // userProductsArray.push(orders[i].userProducts[0]);
+  //       const userProductsteste = await Product.findById(
+  //         orders[i].userProducts
+  //       );
+  //       userProductsArray.push(userProductsteste);
+  //       const userProductsteste2 = await Product.findById(orders[i].myProducts);
+  //       myProductsArray.push(userProductsteste2);
+  //       console.log(userProductsArray);
+  //       console.log(myProductsArray);
+  //     }
+  //   }
+  //   res.render("private/my-offers", {
+  //     userProductsArray,
+  //     myProductsArray
+  //   });
+
+  //   // console.log(userProducts);
+  // } catch (error) {
+  //   console.log(error);
+  // }
 });
 
 router.get("/my-products/insert-product", async (req, res, next) => {
