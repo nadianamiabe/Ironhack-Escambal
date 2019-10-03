@@ -77,7 +77,21 @@ router.get("/my-profile/my-products", async (req, res, next) => {
 });
 
 router.get("/my-profile/pending", async (req, res, next) => {
-  res.render("private/pending");
+  const currentUser = req.session.currentUser._id;
+
+  try {
+    const orders = await Order.find({
+      myUser: currentUser
+    })
+      .populate("userProducts")
+      .populate("myProducts")
+      .populate("myUser");
+    console.log(orders);
+
+    res.render("private/pending", { orders });
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 router.get("/my-profile/my-offers", async (req, res, next) => {
@@ -90,45 +104,12 @@ router.get("/my-profile/my-offers", async (req, res, next) => {
       .populate("userProducts")
       .populate("myProducts")
       .populate("myUser");
-    console.log(orders[0].myUser);
-    // const myProducts = await Product.findById(orders.find(currentUser));
-    // console.log(myProducts);
+    console.log(orders);
 
     res.render("private/my-offers", { orders });
   } catch (error) {
     console.log(error);
   }
-
-  // const currentUser = req.session.currentUser._id;
-  // const userProductsArray = [];
-  // const myProductsArray = [];
-
-  // const orders = await Order.find();
-
-  // const products = await Product.find();
-  // try {
-  //   for (let i = 0; i < orders.length; i++) {
-  //     if (currentUser === orders[i].userId[0]) {
-  //       // userProductsArray.push(orders[i].userProducts[0]);
-  //       const userProductsteste = await Product.findById(
-  //         orders[i].userProducts
-  //       );
-  //       userProductsArray.push(userProductsteste);
-  //       const userProductsteste2 = await Product.findById(orders[i].myProducts);
-  //       myProductsArray.push(userProductsteste2);
-  //       console.log(userProductsArray);
-  //       console.log(myProductsArray);
-  //     }
-  //   }
-  //   res.render("private/my-offers", {
-  //     userProductsArray,
-  //     myProductsArray
-  //   });
-
-  //   // console.log(userProducts);
-  // } catch (error) {
-  //   console.log(error);
-  // }
 });
 
 router.get("/my-products/insert-product", async (req, res, next) => {
@@ -137,10 +118,6 @@ router.get("/my-products/insert-product", async (req, res, next) => {
 
 router.post("/my-products", async (req, res, next) => {
   const { name, description, quantity, category, user } = req.body;
-  // const user = req.session.currentUser._id;
-  console.log(req.body);
-  console.log(user);
-
   const newProduct = new Product({
     name,
     description,
@@ -208,7 +185,11 @@ router.get("/order/:id", async (req, res, next) => {
     const productOrder = await Product.findById(id);
     const userProduct = await Product.find({ user: userId });
 
-    res.render("private/order", { productOrder, userProduct });
+    const filteredProducts = userProduct.filter(
+      product => product.status === "Disponível"
+    );
+
+    res.render("private/order", { productOrder, filteredProducts });
   } catch (error) {
     console.log(error);
   }
@@ -217,17 +198,14 @@ router.get("/order/:id", async (req, res, next) => {
 router.post("/order", async (req, res, next) => {
   const { userProducts, userId } = req.body;
   const myProducts = [];
-  console.log("$$$$$$$$$$$$$$$$$$$$4", req.body);
   const body = req.body;
   const keys = Object.keys(req.body);
 
-  // const teste = Object.values(req.body);
   keys.forEach(key => {
     if (body[key] === "on") {
       myProducts.push(key);
     }
   });
-  console.log(myProducts);
 
   const newOrder = new Order({
     myProducts,
@@ -239,6 +217,13 @@ router.post("/order", async (req, res, next) => {
     .save()
     .then(() => {
       console.log(`Order ${newOrder} created`);
+      myProducts.forEach(async product => {
+        console.log(product);
+
+        await Product.findByIdAndUpdate(product, {
+          status: "Pendente"
+        });
+      });
       res.redirect("/my-profile/my-products");
     })
     .catch(error => {
