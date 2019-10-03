@@ -1,6 +1,6 @@
 <h1>Produtos pendentes</h1>
 
-{{#each orders}}
+{{#each filteredOrders}}
 <h2>Você ofertou:</h2>
 <h2>{{myProducts.[0].name}}</h2>
 <h2>{{myProducts.[0].status}}</h2>
@@ -9,6 +9,6 @@
 <h2>por: {{userProducts.[0].name}}</h2>
 <br>
 
-<button>Cancelar Oferta</button>
+<button><a href="/{{_id}}/cancel">Cancelar Oferta</a></button>
 
 {{/each}}

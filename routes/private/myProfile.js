@@ -70,7 +70,10 @@ router.get("/my-profile/my-products", async (req, res, next) => {
   try {
     const products = await Product.find({ user: userId });
 
-    res.render("private/my-products", { products });
+    const filteredProducts = products.filter(
+      product => product.status === "Disponível"
+    );
+    res.render("private/my-products", { filteredProducts });
   } catch (error) {
     console.log(error);
   }
@@ -86,9 +89,10 @@ router.get("/my-profile/pending", async (req, res, next) => {
       .populate("userProducts")
       .populate("myProducts")
       .populate("myUser");
-    console.log(orders);
 
-    res.render("private/pending", { orders });
+    const filteredOrders = orders.filter(order => order.accept === false);
+
+    res.render("private/pending", { filteredOrders });
   } catch (error) {
     console.log(error);
   }
@@ -104,9 +108,11 @@ router.get("/my-profile/my-offers", async (req, res, next) => {
       .populate("userProducts")
       .populate("myProducts")
       .populate("myUser");
-    console.log(orders);
+    // console.log(orders);
 
-    res.render("private/my-offers", { orders });
+    const filteredOrders = orders.filter(order => order.accept === false);
+
+    res.render("private/my-offers", { filteredOrders });
   } catch (error) {
     console.log(error);
   }
@@ -218,8 +224,6 @@ router.post("/order", async (req, res, next) => {
     .then(() => {
       console.log(`Order ${newOrder} created`);
       myProducts.forEach(async product => {
-        console.log(product);
-
         await Product.findByIdAndUpdate(product, {
           status: "Pendente"
         });
@@ -230,6 +234,72 @@ router.post("/order", async (req, res, next) => {
       res.render("private/home");
       console.log(error);
     });
+});
+
+router.get("/:id/decline", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const orders = await Order.findById(id);
+    orders.myProducts.forEach(async product => {
+      await Product.findByIdAndUpdate(product, {
+        status: "Disponível"
+      });
+    });
+
+    await Order.findByIdAndDelete(id);
+    console.log("pedido deletado");
+
+    res.redirect("/my-profile/my-offers");
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+router.get("/:id/accept", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const order = await Order.findById(id);
+
+    order.myProducts.forEach(async product => {
+      await Product.findByIdAndUpdate(product, {
+        status: "Indisponível"
+      });
+    });
+
+    order.userProducts.forEach(async product => {
+      await Product.findByIdAndUpdate(product, {
+        status: "Indisponível"
+      });
+    });
+
+    const updatedOrder = await Order.findByIdAndUpdate(order, {
+      accept: true
+    });
+
+    res.redirect("/my-profile/my-offers");
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+router.get("/:id/cancel", async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const orders = await Order.findById(id);
+
+    orders.myProducts.forEach(async product => {
+      await Product.findByIdAndUpdate(product, {
+        status: "Disponível"
+      });
+    });
+
+    await Order.findByIdAndDelete(id);
+
+    res.redirect("/my-profile/pending");
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 module.exports = router;

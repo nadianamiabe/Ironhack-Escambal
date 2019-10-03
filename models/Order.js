@@ -7,7 +7,8 @@ const orderSchema = new Schema({
   userProducts: [{ type: Schema.Types.ObjectId, ref: "Product" }],
   userId: { type: Array },
   myUser: { type: Schema.Types.ObjectId, ref: "User" },
-  orderDate: { type: Date, default: Date.now() }
+  orderDate: { type: Date, default: Date.now() },
+  accept: { type: Boolean, default: false }
 });
 
 const Order = mongoose.model("Order", orderSchema);
