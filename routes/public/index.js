@@ -16,35 +16,14 @@ router.get("/about", (req, res) => {
 
 let products;
 
-router.get("/products", async (req, res1, next) => {
-  var MongoClient = require("mongodb").MongoClient;
-  var url = "mongodb://localhost/escambalApp";
+router.get("/products", async (req, res, next) => {
+  const products = await Product.find();
 
   try {
-    MongoClient.connect(url, function(err, db) {
-      if (err) throw err;
-      var dbo = db.db("escambalApp");
-
-      dbo
-        .collection("products")
-        .aggregate([
-          {
-            $lookup: {
-              from: "users",
-              localField: "user",
-              foreignField: "_id",
-              as: "productUser"
-            }
-          }
-        ])
-        .toArray(function(err, res) {
-          if (err) throw err;
-          console.log(res);
-
-          res1.render("public/products", { res });
-          db.close();
-        });
-    });
+    const filteredProducts = products.filter(
+      product => product.status === "Disponível"
+    );
+    res.render("public/products", { filteredProducts });
   } catch (error) {
     console.log(error);
   }
@@ -64,6 +43,5 @@ router.post("/products", async (req, res) => {
     console.log(error);
   }
 });
-
 
 module.exports = router;
