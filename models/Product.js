@@ -21,7 +21,8 @@ const productSchema = new Schema({
   quantity: { type: Number, min: 1, required: true },
   status: {
     type: String,
-    enum: ["Disponível", "Pendente", "Extra", "Indisponível"]
+    enum: ["Disponível", "Pendente", "Extra", "Indisponível"],
+    default: "Disponível"
   }
 });
 

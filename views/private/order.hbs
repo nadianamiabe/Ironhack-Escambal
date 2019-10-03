@@ -6,15 +6,16 @@
     <input type="hidden" name="userId" id="userId" value="{{productOrder.user}}">
 
     <h2>Meus produtos</h2>
-    {{#each userProduct}}
+    {{#each filteredProducts}}
+
     <h3>{{name}}</h3>
     <input type="checkbox" name="{{_id}}">
-    {{!-- <input type="hidden" name="myUserId" id="myUserId" value="{{user}}"> --}}
-    {{!-- <input type="hidden" name="myProducts" id="myProducts" value="{{_id}}"> --}}
+
 
 
     {{/each}}
     <input type="hidden" name="myUser" value="{{myUser}}">
+    <input type="hidden" name="status" value="{{status}}">
 
 
 
