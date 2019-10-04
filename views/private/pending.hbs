@@ -1,0 +1,17 @@
+<h1>Produtos pendentes</h1>
+
+{{#each filteredOrders}}
+<h2>Você ofertou:</h2>
+<img src="{{myProducts.[0].imageUrl}}" alt="product-image" width="200">
+
+<h2>{{myProducts.[0].name}}</h2>
+<h2>{{myProducts.[0].status}}</h2>
+
+<br>
+<img src="{{userProducts.[0].imageUrl}}" alt="product-image" width="200">
+<h2>por: {{userProducts.[0].name}}</h2>
+<br>
+
+<button><a href="/{{_id}}/cancel">Cancelar Oferta</a></button>
+
+{{/each}}

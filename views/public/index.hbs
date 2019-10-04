@@ -1,14 +1,46 @@
 <nav>
-    {{#unless email}}
-    <a href="/login">Log in Now!</a>
+
+    <button type="button" class="btn btn-success btn-lg mt-2 ml-2" data-toggle="modal"
+        data-target="#meuModal">Login</button>
+
+    <div id="meuModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Conteúdo do modal-->
+            <div class="modal-content">
+
+                <!-- Cabeçalho do modal -->
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Corpo do modal -->
+                <div class="modal-body">
+                    <form action="/login" method="POST">
+                        <input type="text" name="email" placeholder="Email">
+                        <br>
+                        <input type="password" name="password" placeholder="Senha">
+                        <br>
+                        {{#if errorMessage}}
+                        <p>{{errorMessage}}</p>
+                        {{/if}}
+                        <button class="crazy-button" type="submit">Entrar</button>
+                    </form>
+                </div>
+
+                <!-- Rodapé do modal-->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
     <a href="/signup">Signup</a>
-    {{else}}
-    <a href="/events">My Profile</a>
-    <a href="/logout">Logout</a>
-    {{/unless}}
     <a href="/about">Sobre</a>
-    <a href="/categories">Produtos</a>
+    <a href="/products">Produtos</a>
 </nav>
 <div class="container">
+
     <h1 class="title">Bem vindx ao Escambal</h1>
 </div>

@@ -1,0 +1,25 @@
+<form action="/order" method="POST">
+
+    <h2>Produto escolhido</h2>
+    <img src="{{productOrder.imageUrl}}" alt="product-image" width="200">
+    <h3>{{productOrder.name}}</h3>
+    <input type="hidden" name="userProducts" id="userProducts" value="{{productOrder._id}}">
+    <input type="hidden" name="userId" id="userId" value="{{productOrder.user}}">
+
+    <h2>Meus produtos</h2>
+    {{#each filteredProducts}}
+    <img src="{{imageUrl}}" alt="product-image" width="200">
+    <h3>{{name}}</h3>
+    <input type="checkbox" name="{{_id}}">
+
+
+
+    {{/each}}
+    <input type="hidden" name="myUser" value="{{myUser}}">
+    <input type="hidden" name="status" value="{{status}}">
+    <input type="hidden" name="accept" value="{{accept}}">
+
+
+    <button type="submit">Escambal!</button>
+
+</form>
