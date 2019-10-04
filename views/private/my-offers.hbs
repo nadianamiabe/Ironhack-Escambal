@@ -1,11 +1,13 @@
 <h1>Ofertas</h1>
 
 {{#each filteredOrders}}
+<img src="{{myProducts.[0].imageUrl}}" alt="product-image" width="200">
 <h2>{{myUser.name}} quer ofertar:</h2>
 <h2>{{myProducts.[0].name}}</h2>
 <h2>{{myProducts.[0].status}}</h2>
 
 <br>
+<img src="{{userProducts.[0].imageUrl}}" alt="product-image" width="200">
 <h2>por: {{userProducts.[0].name}}</h2>
 <br>
 

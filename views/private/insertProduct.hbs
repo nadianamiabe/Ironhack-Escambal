@@ -1,6 +1,6 @@
 <h1>{{title}}</h1>
 <br>
-<form action="/my-products" method="POST">
+<form action="/my-products" method="POST" enctype="multipart/form-data">
     <label for="name">Nome:
     </label>
     <input type="text" name="name" id="name">
@@ -20,6 +20,7 @@
         <option value="Outros">Outros</option>
     </select>
 
+    <input type="file" name="imageUrl">
 
     <label for="quantity">Quantidade:
     </label>

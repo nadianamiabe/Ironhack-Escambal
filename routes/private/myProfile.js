@@ -4,6 +4,8 @@ const Product = require("../../models/Product");
 const User = require("../../models/User");
 const Order = require("../../models/Order");
 
+const uploadCloud = require("../../config/cloudinary.config");
+
 router.get("/home", async (req, res) => {
   res.render("private/home");
 });
@@ -18,8 +20,13 @@ router.get("/home/products", async (req, res) => {
         usersProducts.push(products[i]);
       }
     }
-    res.render("private/home-products", { usersProducts });
-  } catch (error) {}
+    const filteredProducts = usersProducts.filter(
+      product => product.status === "Disponível"
+    );
+    res.render("private/home-products", { filteredProducts });
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 router.post("/home/products", async (req, res) => {
@@ -122,26 +129,34 @@ router.get("/my-products/insert-product", async (req, res, next) => {
   res.render("private/insertProduct");
 });
 
-router.post("/my-products", async (req, res, next) => {
-  const { name, description, quantity, category, user } = req.body;
-  const newProduct = new Product({
-    name,
-    description,
-    quantity,
-    category,
-    user: req.session.currentUser._id
-  });
-  newProduct
-    .save()
-    .then(() => {
-      console.log(`Product ${newProduct} created`);
-      res.redirect(`my-profile/my-products/`);
-    })
-    .catch(error => {
-      res.render("private/insertProduct");
-      console.log(error);
+router.post(
+  "/my-products",
+  uploadCloud.single("imageUrl"),
+  async (req, res, next) => {
+    const { name, description, quantity, category, user } = req.body;
+    const imageUrl = req.file.url;
+    console.log(imageUrl);
+
+    const newProduct = new Product({
+      name,
+      description,
+      quantity,
+      category,
+      user: req.session.currentUser._id,
+      imageUrl
     });
-});
+    newProduct
+      .save()
+      .then(() => {
+        console.log(`Product ${newProduct} created`);
+        res.redirect(`my-profile/my-products/`);
+      })
+      .catch(error => {
+        res.render("private/insertProduct");
+        console.log(error);
+      });
+  }
+);
 
 router.get("/my-products/:id", async (req, res) => {
   const { id } = req.params;
