@@ -8,6 +8,11 @@ const userSchema = new Schema({
   password: { type: String, required: true, minlength: 6 },
   cpf: { type: Number, required: true },
   phoneNumber: { type: Number, required: true },
+  userImage: {
+    type: String,
+    default:
+      "https://res.cloudinary.com/escambalapp/image/upload/v1570283269/escambal-app-folder/default-avatar.jpg"
+  },
   address: {
     road: { type: String, required: true },
     number: { type: Number, required: true },

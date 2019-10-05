@@ -1,6 +1,22 @@
 <a href="/home">Home</a>
 <a href="/logout">Logout</a>
 
+{{#each myUser}}
+<img src="{{userImage}}" alt="" height="200">
+<h1>{{name}}</h1>
+<h1>{{email}}</h1>
+<h1>{{phoneNumber}}</h1>
+<h1>{{address.road}}</h1>
+<h1>{{address.number}}</h1>
+<h1>{{address.complement}}</h1>
+<h1>{{address.cep}}</h1>
+<h1>{{address.city}}</h1>
+<h1>{{address.state}}</h1>
+{{/each}}
+
+<button><a href="/my-profile/edit">Editar perfil</a></button>
+
+
 
 <h1><a href="/my-profile/pending">Produtos pendentes</a></h1>
 <h1><a href="/my-profile/my-products">Meus produtos</a></h1>
