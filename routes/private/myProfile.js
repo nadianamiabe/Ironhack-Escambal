@@ -68,7 +68,40 @@ router.get("/products/:id", async (req, res, next) => {
 });
 
 router.get("/my-profile", async (req, res, next) => {
-  res.render("private/my-profile");
+  const userId = req.session.currentUser._id;
+  try {
+    const user = await User.findById(userId);
+    console.log(user);
+
+    res.render("private/my-profile", { user });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+router.get("/my-profile/:id/edit", async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const profile = await User.findById(id);
+    res.render("private/my-profile-edit", profile);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+router.post("/my-profile/edit", async (req, res) => {
+  const { id } = req.params;
+  const profile = req.body;
+
+  try {
+    await User.findByIdAndUpdate(id, profile);
+    res.redirect("/my-profile");
+    console.log("perfil editado");
+  } catch (error) {
+    console.log(error);
+    error;
+  }
 });
 
 router.get("/my-profile/my-products", async (req, res, next) => {
@@ -196,6 +229,7 @@ router.post("/my-products/:id", async (req, res, next) => {
     res.redirect("/my-profile/my-products");
   } catch (error) {
     console.log(error);
+    error;
   }
 });
 
@@ -312,6 +346,26 @@ router.get("/:id/cancel", async (req, res) => {
     await Order.findByIdAndDelete(id);
 
     res.redirect("/my-profile/pending");
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+router.get("/user/:id", async (req, res) => {
+  const { id } = req.params;
+  const userProducts = [];
+  try {
+    const allProducts = await Product.find();
+
+    for (let i = 0; i < allProducts.length; i++) {
+      if (allProducts[i].user == id) {
+        userProducts.push(allProducts[i]);
+      }
+    }
+
+    const user = await User.findById(id);
+
+    res.render("private/user-profile", { userProducts, user });
   } catch (error) {
     console.log(error);
   }

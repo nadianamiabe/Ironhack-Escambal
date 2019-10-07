@@ -1,0 +1,47 @@
+<form action="/my-profile/edit" method="POST" enctype="multipart/form-data">
+    <br>
+    <label for="userImage">Foto de perfil:</label>
+
+    <input type="file" name="userImage" value="{{userImage}}">
+    <br>
+    <label for="name">Nome:</label>
+
+    <input type="text" name="name" value="{{name}}">
+    <br>
+    <label for="email">Email:</label>
+
+    <input type="text" name="email" value="{{email}}">
+    <br>
+    <label for="phoneNumber">Número de telefone:</label>
+
+    <input type="text" name="phoneNumber" value="{{phoneNumber}}">
+    <br>
+    <label for="address.road">Rua:</label>
+
+    <input type="text" name="address.road" value="{{address.road}}">
+    <br>
+    <label for="address.number">Número:</label>
+
+    <input type="text" name="address.number" value="{{address.number}}">
+    <br>
+    <label for="address.complement">Complemento:</label>
+
+    <input type="text" name="address.complement" value="{{address.complement}}">
+    <br>
+    <label for="address.cep">CEP:</label>
+
+    <input type="text" name="address.cep" value="{{address.cep}}">
+    <br>
+    <label for="address.city">Cidade:</label>
+
+    <input type="text" name="address.city" value="{{address.city}}">
+    <br>
+    <label for="address.state">Estado:</label>
+
+    <input type="text" name="address.state" value="{{address.state}}">
+    <br>
+
+
+
+    <button type="submit">Salvar alterações</button>
+</form>

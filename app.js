@@ -11,7 +11,7 @@ const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
 
 mongoose
-  .connect("mongodb://localhost/escambalApp", { useNewUrlParser: true })
+  .connect(process.env.MONGODB_URI, { useNewUrlParser: true })
   .then(x => {
     console.log(
       `Connected to Mongo! Database name: "${x.connections[0].name}"`
@@ -75,7 +75,7 @@ app.use((req, res, next) => {
 
 app.use("/", userArea);
 
-app.listen(3000, () => {
+app.listen(process.env.PORT || 3000, () => {
   console.log("My lab application listening on port 3000!");
 });
 

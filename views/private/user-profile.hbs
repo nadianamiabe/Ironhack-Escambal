@@ -1,0 +1,21 @@
+{{#each user}}
+<h1>{{name}}</h1>
+<h2>{{email}}</h2>
+<h2>{{phoneNumber}}</h2>
+<img src="{{userImage}}" alt="" height="200">
+
+
+{{/each}}
+
+<h2>Endereço</h2>
+{{#each user}}
+
+<h3>{{address.road}} {{address.number}} {{address.state}} {{address.city}}</h3>
+
+{{/each}}
+
+{{#each userProducts}}
+<h1><a href="/products/{{_id}}">{{name}}</a></h1>
+<img src="{{imageUrl}}" alt="" height="200">
+
+{{/each}}
