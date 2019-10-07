@@ -70,17 +70,38 @@ router.get("/products/:id", async (req, res, next) => {
 router.get("/my-profile", async (req, res, next) => {
   const userId = req.session.currentUser._id;
   try {
-    const myUser = await User.findById(userId);
-    console.log(myUser, userId);
+    const user = await User.findById(userId);
+    console.log(user);
 
-    res.render("private/my-profile", { myUser });
+    res.render("private/my-profile", { user });
   } catch (error) {
     console.log(error);
   }
 });
 
-router.get("/my-profile/edit", async (req, res) => {
-  res.render("private/my-profile-edit");
+router.get("/my-profile/:id/edit", async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const profile = await User.findById(id);
+    res.render("private/my-profile-edit", profile);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+router.post("/my-profile/edit", async (req, res) => {
+  const { id } = req.params;
+  const profile = req.body;
+
+  try {
+    await User.findByIdAndUpdate(id, profile);
+    res.redirect("/my-profile");
+    console.log("perfil editado");
+  } catch (error) {
+    console.log(error);
+    error;
+  }
 });
 
 router.get("/my-profile/my-products", async (req, res, next) => {
