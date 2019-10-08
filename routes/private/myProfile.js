@@ -79,7 +79,7 @@ router.get("/my-profile", async (req, res, next) => {
   }
 });
 
-router.get("/my-profile/:id/edit", async (req, res) => {
+router.get("/my-profile/:id/edit", async (req, res, next) => {
   const { id } = req.params;
 
   try {
@@ -90,19 +90,27 @@ router.get("/my-profile/:id/edit", async (req, res) => {
   }
 });
 
-router.post("/my-profile/edit", async (req, res) => {
-  const { id } = req.params;
-  const profile = req.body;
+router.post(
+  "/my-profile/:id",
+  uploadCloud.single("userImage"),
+  async (req, res, next) => {
+    const { id } = req.params;
+    const profile = req.body;
+    const userImage = req.file.url;
+    profile["userImage"] = userImage;
+    console.log("profile", profile);
 
-  try {
-    await User.findByIdAndUpdate(id, profile);
-    res.redirect("/my-profile");
-    console.log("perfil editado");
-  } catch (error) {
-    console.log(error);
-    error;
+    try {
+      await User.findByIdAndUpdate(id, profile);
+      //console.log("oi", profile);
+      res.redirect("/my-profile");
+      //console.log("perfil editado");
+    } catch (error) {
+      console.log(error);
+      error;
+    }
   }
-});
+);
 
 router.get("/my-profile/my-products", async (req, res, next) => {
   const userId = req.session.currentUser._id;
@@ -250,6 +258,10 @@ router.get("/order/:id", async (req, res, next) => {
   }
 });
 
+router.get("/final-order", (req, res) => {
+  res.render("private/final-order");
+});
+
 router.post("/order", async (req, res, next) => {
   const { userProducts, userId } = req.body;
   const myProducts = [];
@@ -277,7 +289,7 @@ router.post("/order", async (req, res, next) => {
           status: "Pendente"
         });
       });
-      res.redirect("/my-profile/my-products");
+      res.redirect("/final-order");
     })
     .catch(error => {
       res.render("private/home");
