@@ -1,23 +1,37 @@
-<a href="/home">Home</a>
-<a href="/logout">Logout</a>
+<div class="nav-bar">
+  <a class="active" href="/home">ESCAMBAL</a>
+  <a href="/home">Página inicial</a>
+  <a href="/home/products">Produtos</a>
+  <a href="/about">Conheça nossa história</a>
+  <div class="left-nav">
+  <a class="left" href="/my-profile">Meu perfil</a>
+  <a class="left" href="/logout">Logout</a>
+  </div>
+</div>
 
-{{#each myUser}}
-<img src="{{userImage}}" alt="" height="200">
-<h1>{{name}}</h1>
-<h1>{{email}}</h1>
-<h1>{{phoneNumber}}</h1>
-<h1>{{address.road}}</h1>
-<h1>{{address.number}}</h1>
-<h1>{{address.complement}}</h1>
-<h1>{{address.cep}}</h1>
-<h1>{{address.city}}</h1>
-<h1>{{address.state}}</h1>
-{{/each}}
+<div class="my-profile-container">
+  <div class="profile-info">
+      {{#each myUser}}
+      <img class="profile-info-item" src="{{userImage}}" alt="" height="200">
+      <h1 class="profile-info-item" >{{name}}</h1>
+      <h1 class="profile-info-item" >{{email}}</h1>
+      <h1 class="profile-info-item" >{{phoneNumber}}</h1>
+      <h1 class="profile-info-item" >{{address.road}}</h1>
+      <h1 class="profile-info-item" >{{address.number}}</h1>
+      <h1 class="profile-info-item" >{{address.complement}}</h1>
+      <h1 class="profile-info-item" >{{address.cep}}</h1>
+      <h1 class="profile-info-item" >{{address.city}}</h1>
+      <h1 class="profile-info-item" >{{address.state}}</h1>
+  {{/each}}
+  <button><a href="/my-profile/edit">Editar perfil</a></button>
+  </div>
 
-<button><a href="/my-profile/edit">Editar perfil</a></button>
 
 
+  <div class="my-items">
+    <h1><a href="/my-profile/pending">Produtos pendentes</a></h1>
+    <h1><a href="/my-profile/my-products">Meus produtos</a></h1>
+    <h1><a href="/my-profile/my-offers">Ofertas recebidas</a></h1>
+  </div>
 
-<h1><a href="/my-profile/pending">Produtos pendentes</a></h1>
-<h1><a href="/my-profile/my-products">Meus produtos</a></h1>
-<h1><a href="/my-profile/my-offers">Ofertas</a></h1>
+</div>

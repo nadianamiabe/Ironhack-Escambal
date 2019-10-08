@@ -1,0 +1,110 @@
+.colors {
+    color: #37585B;color: #3F7E84;  color: #F7FCDB; 
+    color: #F7C331;    color: #F7882F;
+}
+/* nav-bar set-up */
+.nav-bar {
+    background-color: #3F7E84;
+    overflow: hidden;
+  }
+  
+  /* Style the links inside the navigation bar */
+  .nav-bar a {
+    float: left;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #F7FCDB;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    /* font-weight: bold; */
+    font-size: 1.3em;
+  }
+  
+  /* Change the color of links on hover */
+  .nav-bar a:hover {
+    background-color: #37585B;
+    color: #F7C331;
+  }
+  
+  /* Add a color to the active/current link */
+  .nav-bar a.active {
+      font-weight: bold;
+    background-color: #F7C331;
+    color: white;
+  }
+
+  .left-nav{
+      padding-right: 40px;
+      float: right;
+  }
+/* HOME PAGE SET-UP */
+
+.home-container {
+    border: solid black 2px;
+    height: 700px;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    margin: auto;
+    flex-direction: column;
+    background: url(https://res.cloudinary.com/escambalapp/image/upload/v1570512135/escambal-app-folder/css.images/http___cdn.cnn.com_cnnnext_dam_assets_170706112500-brazil_a0wmll.jpg);
+    background-size: auto;
+    background-repeat: no-repeat;
+    background-color: grey;
+
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+}
+
+.home-text-container {
+    background-color: rgba(63, 126, 132, 0.7);
+    width: 800px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+       
+}
+
+.title {
+    color: #F7FCDB;
+    font-size: 5em;
+}
+
+.sub-title {
+    font-size: 2.5em;
+    color: #F7FCDB;
+
+}
+
+
+/* MY PROFILE INFO */
+
+.my-profile-container {
+    height: 700px;
+    width: 100%;
+    border: solid 2px black;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+}
+.profile-info {
+    border: solid 2px black;
+    width: 25%;
+    height: 700px;
+    text-align: center;
+}
+
+.profile-info-item {
+    font-size: 1.3em;
+}
+
+.my-items {
+    width: 75%;
+    height: 700px;
+    border: solid 2px black;
+    align-self: flex-start;
+}
