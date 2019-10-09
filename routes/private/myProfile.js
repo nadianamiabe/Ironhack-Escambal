@@ -3,6 +3,7 @@ const router = express.Router();
 const Product = require("../../models/Product");
 const User = require("../../models/User");
 const Order = require("../../models/Order");
+const nodemailer = require("nodemailer");
 
 const uploadCloud = require("../../config/cloudinary.config");
 
@@ -90,24 +91,43 @@ router.get("/my-profile/:id/edit", async (req, res, next) => {
   }
 });
 
+router.post("/my-profile/:id", async (req, res, next) => {
+  const { id } = req.params;
+  const profile = req.body;
+  try {
+    await User.findByIdAndUpdate(id, profile);
+    res.redirect("/my-profile");
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+router.get("/my-profile/:id/edit-image", async (req, res, next) => {
+  const { id } = req.params;
+
+  try {
+    const profile = await User.findById(id);
+    res.render("private/edit-image", profile);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 router.post(
-  "/my-profile/:id",
+  "/my-profile/image/:id",
   uploadCloud.single("userImage"),
   async (req, res, next) => {
     const { id } = req.params;
     const profile = req.body;
     const userImage = req.file.url;
     profile["userImage"] = userImage;
-    console.log("profile", profile);
+    console.log(userImage);
 
     try {
       await User.findByIdAndUpdate(id, profile);
-      //console.log("oi", profile);
       res.redirect("/my-profile");
-      //console.log("perfil editado");
     } catch (error) {
       console.log(error);
-      error;
     }
   }
 );
@@ -280,21 +300,57 @@ router.post("/order", async (req, res, next) => {
     userId,
     myUser: req.session.currentUser._id
   });
-  newOrder
-    .save()
-    .then(() => {
-      console.log(`Order ${newOrder} created`);
-      myProducts.forEach(async product => {
-        await Product.findByIdAndUpdate(product, {
-          status: "Pendente"
-        });
+  newOrder.save().then(async () => {
+    console.log(`Order ${newOrder} created`);
+    myProducts.forEach(async product => {
+      await Product.findByIdAndUpdate(product, {
+        status: "Pendente"
       });
-      res.redirect("/final-order");
-    })
-    .catch(error => {
-      res.render("private/home");
-      console.log(error);
     });
+
+    const offerUser = await User.findById(userId);
+
+    const $usuario = "escambalapp@gmail.com";
+    const $senha = "ladygaga123456";
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: $usuario,
+        pass: $senha
+      }
+    });
+    const $destinatario = offerUser.email;
+    console.log($destinatario);
+
+    const mailOptions = {
+      from: $usuario,
+      to: $destinatario,
+      subject: "Escambal : Você recebeu uma oferta em algum produto!",
+      text: `Tudo bem, ${offerUser.name}? 
+      Você recebeu uma oferta nova! Clique no link para visualizar 
+      https://escambal-app.herokuapp.com/my-profile/my-offers
+      
+      Estamos torcendo para que você tenha recebido uma ótima oferta.
+
+      Atenciosamente, 
+      Equipe Escambal.
+      `
+    };
+    transporter
+      .sendMail(mailOptions, function(error, info) {
+        if (error) {
+          console.log(error);
+        } else {
+          console.log("Email enviado: " + info.response);
+        }
+
+        res.redirect("/final-order");
+      })
+      .catch(err => {
+        res.render("private/home");
+        console.log(err);
+      });
+  });
 });
 
 router.get("/:id/decline", async (req, res) => {
