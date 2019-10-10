@@ -15,20 +15,29 @@
         </div>
 </div>
 
-<h1>Produtos pendentes</h1>
 
-{{#each filteredOrders}}
-<h2>Você ofertou:</h2>
-<img src="{{myProducts.[0].imageUrl}}" alt="product-image" width="200">
+<div class="pending-page">
+    <div class="pending-title">
+        <h1>Produtos pendentes</h1>
+    </div>
+    <div class="all-products-container">
+        <div class="pending-products-container">
 
-<h2>{{myProducts.[0].name}}</h2>
-<h2>{{myProducts.[0].status}}</h2>
 
-<br>
-<img src="{{userProducts.[0].imageUrl}}" alt="product-image" width="200">
-<h2>por: {{userProducts.[0].name}}</h2>
-<br>
+<div class="pending-products-container">
 
-<button><a href="/{{_id}}/cancel">Cancelar Oferta</a></button>
+    <h1>Produtos pendentes</h1>
+    {{#each filteredOrders}}
+    <h2 class="product-card-text">Você ofertou:</h2>
+    <img src="{{myProducts.[0].imageUrl}}" alt="product-image" width="200" height="200">
+    <h2 class="product-card-text">{{myProducts.[0].name}}</h2>
+    <br>
+    <img src="{{userProducts.[0].imageUrl}}" alt="product-image" width="200" height="200">
+    <h2 class="product-card-text">por: {{userProducts.[0].name}}</h2>
+    <br>
+    <button><a href="/{{_id}}/cancel">Cancelar Oferta</a></button>
+    {{/each}}
 
-{{/each}}
+</div>
+
+       

@@ -14,7 +14,7 @@
                 </a>
         </div>
 </div>
-
+{{!-- 
 {{#each products}}
 <img src="{{imageUrl}}" alt="product-image" width="200">
 <h1><a href="/products/{{_id}}">{{name}}</a></h1>
@@ -22,4 +22,17 @@
 <p>{{category}}</p>
 <p>{{quantity}}</p>
 
-{{/each}}
+{{/each}} --}}
+
+ <div class="all-products-container">
+    {{#each products}}
+        <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="{{imageUrl}}" alt="Card image cap" height="200" width="200">
+        <div class="card-body">
+                    <h1><a href="/products/{{_id}}" class="all-products-card-text">{{name}}</a></h1>
+                    <p class="all-products-card-text">{{description}}</p>
+                    <p class="all-products-card-text">{{category}}</p>
+                    <p class="all-products-card-text">{{quantity}}</p>
+        </div>
+        </div>
+        {{/each}}

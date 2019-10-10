@@ -14,7 +14,7 @@
                 </a>
         </div>
 </div>
-
+{{!-- 
 <img src="{{product.imageUrl}}" alt="product-image" width="200">
 <h1>{{product.name}}</h1>
 <p>{{product.description}}</p>
@@ -25,4 +25,22 @@
 <p>{{_doc.phoneNumber}}</p>
 <a href="/user/{{_doc._id}}">Informações do usuário</a>
 
-<button><a href="/order/{{product._id}}">Quero Escambar!</a></button>
+<button><a href="/order/{{product._id}}">Quero Escambar!</a></button> --}}
+
+ <div class="all-products-container">
+        <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="{{product.imageUrl}}" alt="Card image cap" height="200" width="200">
+        <div class="card-body">
+                    <h1><a class="all-products-card-text">{{product.name}}</a></h1>
+                    <p class="all-products-card-text">{{product.description}}</p>
+                    <p class="all-products-card-text">{{prduct.category}}</p>
+                    <p class="all-products-card-text">{{product.quantity}}</p>
+                    <p class="all-products-card-text">{{_doc.name}}</p>
+                    <p class="all-products-card-text">{{_doc.email}}</p>
+                    <p class="all-products-card-text">{{_doc.phoneNumber}}</p>
+                    {{!-- <a href="/user/"{{_doc._id}} class="all-products-card-text">Informações do usuário</a> --}}
+
+        <button><a href="/order/{{product._id}}">Quero Escambar!</a></button>
+
+        </div>
+        </div>

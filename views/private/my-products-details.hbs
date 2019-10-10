@@ -14,8 +14,19 @@
                 </a>
         </div>
 </div>
-
+{{!-- 
 <h1>{{name}}</h1>
 <img src="{{imageUrl}}" alt="product-image" width="200">
 <p>{{description}}</p>
-<p>{{quantity}}</p>
+<p>{{quantity}}</p> --}}
+
+ <div class="all-products-container">
+        <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="{{imageUrl}}" alt="Card image cap" height="200" width="200">
+        <div class="card-body">
+                    <h1><a class="all-products-card-text">{{name}}</a></h1>
+                    <p class="all-products-card-text">{{description}}</p>
+                    <p class="all-products-card-text">{{category}}</p>
+                    <p class="all-products-card-text">{{quantity}}</p>
+        </div>
+        </div>
