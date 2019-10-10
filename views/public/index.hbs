@@ -1,45 +1,55 @@
-<nav>
+<div class="topnav" id="myTopnav">
 
-    <a href="#" class="" data-toggle="modal" data-target="#meuModal">Login</a>
-
-    <div id="meuModal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-
-            <!-- Conteúdo do modal-->
-            <div class="modal-content">
-
-                <!-- Cabeçalho do modal -->
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-
-                <!-- Corpo do modal -->
-                <div class="modal-body">
-                    <form action="/login" method="POST">
-                        <input type="text" name="email" placeholder="Email">
-                        <br>
-                        <input type="password" name="password" placeholder="Senha">
-                        <br>
-                        {{#if errorMessage}}
-                        <p>{{errorMessage}}</p>
-                        {{/if}}
-                        <button class="crazy-button" type="submit">Entrar</button>
-                    </form>
-                </div>
-
-                <!-- Rodapé do modal-->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
-                </div>
-
-            </div>
+    <div class="logo">
+    <a href="/"><img src="https://res.cloudinary.com/escambalapp/image/upload/v1570636194/escambal-app-folder/css.images/Copy_of_Untitled_l1ynt5.png" alt="logo"></a>
         </div>
-    </div>
-    <a href="/signup">Signup</a>
-    <a href="/about">Sobre</a>
-    <a href="/products">Produtos</a>
-</nav>
-<div class="container">
+    <div>
+        <a href="#" class="" data-toggle="modal" data-target="#meuModal">Login</a>
+            <div id="meuModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                        <!-- Conteúdo do modal-->
+                        <div class="modal-content">
 
-    <h1 class="title">Bem vindx ao Escambal</h1>
+                        <!-- Cabeçalho do modal -->
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+
+                        <!-- Corpo do modal -->
+                        <div class="modal-body">
+                            <form action="/login" method="POST">
+                                <input type="text" name="email" placeholder="Email">
+                                <br>
+                                <input type="password" name="password" placeholder="Senha">
+                                <br>
+                                    {{#if errorMessage}}
+                                <p>{{errorMessage}}</p>
+                                    {{/if}}
+                                <button class="crazy-button" type="submit">Entrar</button>
+                            </form>
+                        </div>
+                        <!-- Rodapé do modal-->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <a href="/signup" class="active">Crie sua conta!</a>
+                <a href="/about">Nossa história</a>
+                <a href="/products">Nossos produtos</a>
+                <a href="/" class="active">Página inicial</a>
+                <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                    <i class="fa fa-bars"></i>
+                </a>
+        </div>
+</div>
+<div class="card bg-dark text-white">
+  <img class="card-img" src="https://res.cloudinary.com/escambalapp/image/upload/v1570512135/escambal-app-folder/css.images/http___cdn.cnn.com_cnnnext_dam_assets_170706112500-brazil_a0wmll.jpg" alt="Card image">
+  <div class="card-img-overlay">
+    <div class="card-container">
+    <h1 class="card-home-title">ESCAMBAL</h1>
+    <p class="card-home-text">Explore milhares de produtos e troque seus objetos por aquilo que faz sentido pra você!</p>
+    </div>
+  </div>
 </div>

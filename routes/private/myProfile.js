@@ -30,6 +30,10 @@ router.get("/home/products", async (req, res) => {
   }
 });
 
+router.get('/home/about', async (req,res) => {
+  res.render('private/about')
+})
+
 router.post("/home/products", async (req, res) => {
   const { category } = req.body;
   const userId = req.session.currentUser._id;
