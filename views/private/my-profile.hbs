@@ -1,8 +1,10 @@
-<a href="/home">Home</a>
-<a href="/logout">Logout</a>
-
 {{#each user}}
 <img src="{{userImage}}" alt="" width="200">
+{{/each}}
+<a href="/my-profile/{{user._id}}/edit-image">Editar foto</a>
+
+
+{{#each user}}
 <h1>{{name}}</h1>
 <h1>{{email}}</h1>
 <h1>{{phoneNumber}}</h1>
@@ -13,9 +15,9 @@
 <h1>{{address.city}}</h1>
 <h1>{{address.state}}</h1>
 
-
-
 {{/each}}
+
+
 <button><a href="/my-profile/{{user._id}}/edit">Editar perfil</a></button>
 
 
