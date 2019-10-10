@@ -58,11 +58,13 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
 app.use(express.static(path.join(__dirname, "public")));
 
-const index = require("./routes/public/index");
+const indexRoutes = require("./routes/public/index");
 const authRoutes = require("./routes/public/authRoutes");
 const userArea = require("./routes/private/myProfile");
+const privateProducts = require("./routes/private/privateProducts");
+const myProfile = require("./routes/private/myProfile");
 
-app.use("/", index);
+app.use("/", indexRoutes);
 app.use("/", authRoutes);
 
 app.use((req, res, next) => {
@@ -73,7 +75,8 @@ app.use((req, res, next) => {
   }
 });
 
-app.use("/", userArea);
+app.use("/", privateProducts);
+app.use("/", myProfile);
 
 app.listen(process.env.PORT || 3000, () => {
   console.log("My lab application listening on port 3000!");

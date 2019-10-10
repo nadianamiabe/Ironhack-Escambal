@@ -8,19 +8,23 @@ body {
     color: #F7C331;    color: #F7882F;
 }
 /* ---------------------------------------------------------- */
-/* ----------- NAVBAR EDIT * -----------/
+/* ----------- PRIVATE NAVBAR EDIT * -----------/
 /* ---------------------------------------------------------- */
 
 
   .topnav {
     overflow: hidden;
     background-color: #3F7E84;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    /* align-content: flex-start */
     /* border: solid white 1px; */
   }
   
   .topnav a {
     float: right;
-    display: block;
+    /* display: block; */
     color: #f2f2f2;
     text-align: center;
     padding: 14px 16px;
@@ -42,17 +46,27 @@ body {
     background-color: #F7C331;
     color: white;
   }
+
+  .topnav a.active:hover {
+    background-color: #37585B;
+    color: #F7C331;
+    
+  }
   
   .topnav .icon {
     display: none;
   }
+  
+  
 
-  .logo img{
-      float:left;
-      padding-left: 15px; 
-  }
+
+  
 /* ---------------------------------------------------------- */
-/*--------------- HOME CARD EDIT ---------------*/
+/* ----------- PUBLIC NAVBAR EDIT * -----------/
+/* ---------------------------------------------------------- */
+
+/* ---------------------------------------------------------- */
+/*--------------- PRIVATE/HOME EDIT ---------------*/
 /* ---------------------------------------------------------- */
 
 .card-container {
@@ -182,6 +196,8 @@ body {
   width: 100px;
   padding-top: 15px;
 }
+
+
 /* ---------------------------------------------------------- */
 /* ---------- MY PRODUCTS EDIT --------- */
 /* ---------------------------------------------------------- */
@@ -219,7 +235,6 @@ body {
   background-color: #37585B;
 }
 
-
 .product-card-text {
   color: white;
   display: flex;
@@ -230,16 +245,90 @@ body {
 .product-card a:hover {
   text-decoration: none;
   color: #F7C331;
+}
 
+.profile-edit-button {
+  color: black;
 }
 
 /* ---------------------------------------------------------- */
 /* ---------- ALL PRODUCTS EDIT --------- */
 /* ---------------------------------------------------------- */
 
+.all-products-page {
+  border: solid 10px white;
+}
+
+.all-products-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.all-products-container {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: white solid 5px;
+}
+
+.all-products-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 1em;
+  height: 350px;
+  width: 250px;
+  background-color: #37585B;
+}
+
+.all-products-card-text {
+  color: white;
+  display: flex;
+  text-align: center;
+  font-weight: bold;
+}
+
+.all-products-card a:hover {
+  text-decoration: none;
+  color: #F7C331;
+}
+
+.profile-edit-button {
+  color: black;
+}
+
+
+
 /* ---------------------------------------------------------- */
 /* ---------- MY-PROFILE EDIT --------- */
 /* ---------------------------------------------------------- */
+
+
+
+/* ---------------------------------------------------------- */
+/* ---------- ABOUT  --------- */
+/* ---------------------------------------------------------- */
+
+.about-container {
+  background-color: #3F7E84;
+  width: 100%;
+  height: 650px;
+  display: flex;
+  justify-content: center;
+}
+
+  
+/* ---------------------------------------------------------- */
+/* ----------- FINAL ORDER VIEW EDIT * -----------/
+/* ---------------------------------------------------------- */
+
+.final-order-container {
+  width: 100%;
+  height: auto;
+  background: url(https://res.cloudinary.com/escambalapp/image/upload/v1570512135/escambal-app-folder/css.images/high-quality-photo_ht208x.jpg)
+}
 
 /* ---------------------------------------------------------- */
 /* ---------- LOG IN EDIT --------- */
@@ -258,9 +347,13 @@ body {
   font-size: 2em;
   text-shadow: 3px 3px black;
 }
-
 .login-text-login {
   font-size: 3em;
+}
+
+.crazy-button {
+  background-color: #37585B;
+  color: white;
 }
 /* RESPONSIVE FEATURES - BOOTSTRAP CODE */
 
