@@ -10,6 +10,16 @@ Install all the project dependencies first
 
 ```
 npm install
+
+Create a dot.env file and add your:
+
+PORT,
+ENV,
+CLOUDINARY_NAME,
+CLOUDINARY_URL,
+CLODUINARY_SECRET
+CLOUDINARY_KEY
+MONGODB_URI
 ```
 
 ## Home page
@@ -17,20 +27,21 @@ Access our [home page](https://escambal-app.herokuapp.com) to start exploring ou
 
 ## Contributing
 
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+Sugestions are always welcome. For any changes, please open an issue so we can discuss your improvements for the project!
 
 ## Future features for Escambal App 2.0v
 That’s what our team plan to implement on the next version of the project:
 
-A message center for users to directly communicate with each other
-User rating and Trades rating
-New products categories
-Search-bar for easily access your desired products
-Multiple trades! You can exchange more than one product at a time
-Mobile app version (coming soon!)
+- A message center for users to directly communicate with each other
+- User rating and Trades rating
+- New products categories
+- Search-bar for easily access your desired products
+- Multiple trades! You can exchange more than one product at a time
+- *Mobile app version (coming soon!)*
 
 # TL;DR
 
 > npm install
+> create .env file with the variables
 
 > Sign up on our platform [home](https://escambal-app.herokuapp.com) and [add products](https://escambal-app.herokuapp.com/my-products/insert-product) to start trading!

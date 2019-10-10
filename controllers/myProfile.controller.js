@@ -261,6 +261,10 @@ const userProfile = async (req, res) => {
   }
 };
 
+const about = (req, res) => {
+  res.render("private/about");
+};
+
 module.exports = {
   myProfile,
   editProfile,
@@ -274,5 +278,6 @@ module.exports = {
   declineOrder,
   acceptOrder,
   cancelOrder,
-  userProfile
+  userProfile,
+  about
 };

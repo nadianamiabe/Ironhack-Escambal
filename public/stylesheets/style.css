@@ -1,0 +1,381 @@
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .colors {
+    color: #37585B;color: #3F7E84;  color: #F7FCDB; 
+    color: #F7C331;    color: #F7882F;
+}
+/* ---------------------------------------------------------- */
+/* ----------- PRIVATE NAVBAR EDIT * -----------/
+/* ---------------------------------------------------------- */
+
+
+  .topnav {
+    overflow: hidden;
+    background-color: #3F7E84;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    /* align-content: flex-start */
+    /* border: solid white 1px; */
+  }
+  
+  .topnav a {
+    float: right;
+    /* display: block; */
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 1.1em;
+    text-shadow: 1.5px 1.5px black;
+    /* border: 1px white solid; */
+    border-bottom: solid 5px #F7C331
+  }
+  
+  .topnav a:hover {
+    background-color: #37585B;
+    color: #F7C331;
+    text-decoration: none;
+  }
+  
+  .topnav a.active {
+    background-color: #F7C331;
+    color: white;
+  }
+
+  .topnav a.active:hover {
+    background-color: #37585B;
+    color: #F7C331;
+    
+  }
+  
+  .topnav .icon {
+    display: none;
+  }
+  
+  
+
+
+  
+/* ---------------------------------------------------------- */
+/* ----------- PUBLIC NAVBAR EDIT * -----------/
+/* ---------------------------------------------------------- */
+
+/* ---------------------------------------------------------- */
+/*--------------- PRIVATE/HOME EDIT ---------------*/
+/* ---------------------------------------------------------- */
+
+.card-container {
+  border: solid 4px #F7C331;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  padding-top: 50px;
+  height: 670px;
+}
+
+.card-home-title {
+  font-size: 5em;
+  font-weight: bold;
+  text-shadow: 3px 3px black;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+}
+
+.card-home-text {
+  font-size: 3em;
+  text-shadow: 3px 3px black;
+}
+/* ---------------------------------------------------------- */
+/* ---------- MY-PROFILE EDIT --------- */
+/* ---------------------------------------------------------- */
+
+.profile-container {
+  height: 800px;
+  width: 100%;
+  border: solid 10px #37585B;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  background-color: #37585B;
+}
+
+.profile-image {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 280px;
+  width: 300px;
+}
+
+
+.profile-info {
+  padding-top: 10px
+}
+
+.profile-data {
+  display: flex;
+  width: 30%;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  border: solid 4px #F7C331;
+  padding-top: 20px;
+  flex-wrap: wrap;
+  background-color: #3F7E84
+}
+
+.profile-data a {
+  background-color: white;
+  border: 2px solid #F7C331;
+  font-weight: bold;
+}
+
+.profile-data a:link   {
+  display: inline-block;
+  text-align: center;
+  font-size: 0.8em;
+  border: 2px solid white;
+  color: white;
+  height: 25px;
+  width: 100px;
+}
+
+.profile-data a:hover {
+  color: #37585B;
+  background-color: white; 
+}
+
+.profile-info-item {
+  font-size: 1.4em;
+  font-weight: bold;
+  background-color: #F7C331;
+}
+
+.profile-products {
+  width: 884.8px;
+  padding-left: 40px;
+  border: solid 4px #F7C331;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-align: center;
+  justify-content: space-around;
+  padding-bottom: 100px;
+  flex-wrap: wrap;
+  background-color: #37585B
+}
+
+.profile-products-container {
+  border: solid 8px #3F7E84;
+  height: 250px;
+  width: 250px;
+  margin: 10px;
+  background-color: #F7C331;
+}
+
+.profile-products-text {
+  font-size: 0.8em;
+  color: #37585B;
+  font-weight: bold;
+}
+
+.profile-products a:hover {
+  color:  #37585B;
+  text-decoration: none;
+} 
+
+.profile-products-img {
+  height: 100px;
+  width: 100px;
+  padding-top: 15px;
+}
+
+
+/* ---------------------------------------------------------- */
+/* ---------- MY PRODUCTS EDIT --------- */
+/* ---------------------------------------------------------- */
+
+.my-products-page {
+  border: solid 10px white;
+}
+
+.add-product-tag {
+  background-color: #F7C331;
+  border: #3F7E84 5px solid;
+}
+
+.my-products-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.products-container {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: white solid 5px;
+}
+
+.product-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 1em;
+  height: 350px;
+  width: 250px;
+  background-color: #37585B;
+}
+
+.product-card-text {
+  color: white;
+  display: flex;
+  text-align: center;
+  font-weight: bold;
+}
+
+.product-card a:hover {
+  text-decoration: none;
+  color: #F7C331;
+}
+
+.profile-edit-button {
+  color: black;
+}
+
+/* ---------------------------------------------------------- */
+/* ---------- ALL PRODUCTS EDIT --------- */
+/* ---------------------------------------------------------- */
+
+.all-products-page {
+  border: solid 10px white;
+}
+
+.all-products-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.all-products-container {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: white solid 5px;
+}
+
+.all-products-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 1em;
+  height: 350px;
+  width: 250px;
+  background-color: #37585B;
+}
+
+.all-products-card-text {
+  color: white;
+  display: flex;
+  text-align: center;
+  font-weight: bold;
+}
+
+.all-products-card a:hover {
+  text-decoration: none;
+  color: #F7C331;
+}
+
+.profile-edit-button {
+  color: black;
+}
+
+
+
+/* ---------------------------------------------------------- */
+/* ---------- MY-PROFILE EDIT --------- */
+/* ---------------------------------------------------------- */
+
+
+
+/* ---------------------------------------------------------- */
+/* ---------- ABOUT  --------- */
+/* ---------------------------------------------------------- */
+
+.about-container {
+  background-color: #3F7E84;
+  width: 100%;
+  height: 650px;
+  display: flex;
+  justify-content: center;
+}
+
+  
+/* ---------------------------------------------------------- */
+/* ----------- FINAL ORDER VIEW EDIT * -----------/
+/* ---------------------------------------------------------- */
+
+.final-order-container {
+  width: 100%;
+  height: auto;
+  background: url(https://res.cloudinary.com/escambalapp/image/upload/v1570512135/escambal-app-folder/css.images/high-quality-photo_ht208x.jpg)
+}
+
+/* ---------------------------------------------------------- */
+/* ---------- LOG IN EDIT --------- */
+/* ---------------------------------------------------------- */
+
+.login-card-container {
+  border: solid 4px #fff;
+  height: 500px;
+  height: 500px;
+  padding-top: 50px;
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  font-size: 2em;
+  text-shadow: 3px 3px black;
+}
+.login-text-login {
+  font-size: 3em;
+}
+
+.crazy-button {
+  background-color: #37585B;
+  color: white;
+}
+/* RESPONSIVE FEATURES - BOOTSTRAP CODE */
+
+@media screen and (max-width: 600px) {
+  .topnav a:not(:first-child) {display: none;}
+  .topnav a.icon {
+    float: right;
+    display: block;
+    }
+  }
+  
+  @media screen and (max-width: 600px) {
+    .topnav.responsive {position: relative;}
+    .topnav.responsive .icon {
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+    .topnav.responsive a {
+      float: none;
+      display: block;
+      text-align: left;
+    }
+  }
+  /* end */
