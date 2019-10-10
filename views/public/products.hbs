@@ -1,26 +1,83 @@
-<form class="form" action="/products" method="POST">
-    {{!-- <input type="text" name="category" placeholder="Filtre por categorias"> --}}
-    <select name="category" id="category">
-        <option value="Eletrônicos e materiais de escritório">Eletrônicos e materiais de escritório</option>
-        <option value="Esporte e Lazer">Esporte e Lazer</option>
-        <option value="Vestuário e Acessórios">Vestuário e Acessórios</option>
-        <option value="Casa, Cozinha e Jardim">Casa, Cozinha e Jardim</option>
-        <option value="Beleza e Cuidados pessoais">Beleza e Cuidados pessoais</option>
-        <option value="Outros">Outros</option>
-    </select>
-    <button type="submit">Filtrar</button>
-</form>
+<div class="topnav" id="myTopnav">
 
+    <div class="logo">
+    <a href="/"><img src="https://res.cloudinary.com/escambalapp/image/upload/v1570636194/escambal-app-folder/css.images/Copy_of_Untitled_l1ynt5.png" alt="logo"></a>
+        </div>
+    <div>
+        <a href="#" class="" data-toggle="modal" data-target="#meuModal">Login</a>
+            <div id="meuModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                        <!-- Conteúdo do modal-->
+                        <div class="modal-content">
 
-{{#each filteredProducts}}
-<img src="{{imageUrl}}" alt="product-image" width="200">
+                        <!-- Cabeçalho do modal -->
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
 
-<h1><a href="/products/{{_id}}">{{name}}</a></h1>
-<p>{{description}}</p>
-<p>{{category}}</p>
-<p>{{quantity}}</p>
+                        <!-- Corpo do modal -->
+                        <div class="modal-body">
+                            <form action="/login" method="POST">
+                                <input type="text" name="email" placeholder="Email">
+                                <br>
+                                <input type="password" name="password" placeholder="Senha">
+                                <br>
+                                    {{#if errorMessage}}
+                                <p>{{errorMessage}}</p>
+                                    {{/if}}
+                                <button class="crazy-button" type="submit">Entrar</button>
+                            </form>
+                        </div>
+                        <!-- Rodapé do modal-->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <a href="/signup" class="active">Crie sua conta!</a>
+                <a href="/about">Nossa história</a>
+                <a href="/products">Nossos produtos</a>
+                <a href="/" class="active">Página inicial</a>
+                <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                    <i class="fa fa-bars"></i>
+                </a>
+        </div>
+</div>
 
-<div id="meuModal" class="modal fade" role="dialog">
+<div class="all-products-page">
+        <div class="all-products-filter">
+            <form class="form" action="/products" method="POST">
+                {{!-- <input type="text" name="category" placeholder="Filtre por categorias"> --}}
+                <select name="category" id="category">
+                    <option value="Eletrônicos e materiais de escritório">Eletrônicos e materiais de escritório</option>
+                    <option value="Esporte e Lazer">Esporte e Lazer</option>
+                    <option value="Vestuário e Acessórios">Vestuário e Acessórios</option>
+                    <option value="Casa, Cozinha e Jardim">Casa, Cozinha e Jardim</option>
+                    <option value="Beleza e Cuidados pessoais">Beleza e Cuidados pessoais</option>
+                    <option value="Outros">Outros</option>
+                </select>
+                <button type="submit">Filtrar</button>
+            </form>
+        </div>
+
+    <div class="all-products-container">
+        {{#each filteredProducts}}
+            <div class="all-products-container">
+                <div class="all-products-card">
+                    <img src="{{imageUrl}}" alt="product-image" width="120" height="120">
+                    <h1><a href="/products/{{_id}}" class="all-products-card-text">{{name}}</a></h1>
+                    <p class="all-products-card-text">{{description}}</p>
+                    <p class="all-products-card-text">{{category}}</p>
+                    <p class="all-products-card-text">{{quantity}}</p>
+        {{/each}}
+                </div>
+            </div>
+    </div>
+</div>
+   
+
+{{!-- <div id="meuModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
 
         <!-- Conteúdo do modal-->
@@ -52,6 +109,5 @@
 
         </div>
     </div>
+</div> --}}
 </div>
-
-{{/each}}

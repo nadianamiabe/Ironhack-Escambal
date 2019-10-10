@@ -20,7 +20,8 @@ const {
   declineOrder,
   acceptOrder,
   cancelOrder,
-  userProfile
+  userProfile,
+  about
 } = require("../../controllers/myProfile.controller");
 
 router.get("/my-profile", myProfile);
@@ -40,5 +41,6 @@ router.get("/:id/decline", declineOrder);
 router.get("/:id/accept", acceptOrder);
 router.get("/:id/cancel", cancelOrder);
 router.get("/user/:id", userProfile);
+router.get("/home/about", about);
 
 module.exports = router;
