@@ -255,56 +255,34 @@ body {
 /* ---------- ALL PRODUCTS EDIT --------- */
 /* ---------------------------------------------------------- */
 
-.all-products-page {
-  border: solid 10px white;
-}
-
 .all-products-container {
   display: flex;
-  flex-direction: row;
-}
-
-.all-products-container {
-  margin: 0;
-  display: flex;
-  flex-direction: column;
+  flex-flow: row wrap;
+  background-color: #3F7E84;
   justify-content: center;
-  border: white solid 5px;
-}
-
-.all-products-card {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  font-size: 1em;
-  height: 350px;
-  width: 250px;
-  background-color: #37585B;
 }
 
 .all-products-card-text {
-  color: white;
-  display: flex;
-  text-align: center;
+  text-decoration: none;
+  color: #37585B;
   font-weight: bold;
 }
-
-.all-products-card a:hover {
-  text-decoration: none;
-  color: #F7C331;
-}
-
-.profile-edit-button {
-  color: black;
+.card {
+  color: #37585B;
+  text-align: center;
+  
 }
 
 
-
 /* ---------------------------------------------------------- */
-/* ---------- MY-PROFILE EDIT --------- */
+/* ---------- PENDING EDIT --------- */
 /* ---------------------------------------------------------- */
 
+.pending-products-container {
+  display: flex;
+  flex-direction: column;
+  background-color: #3F7E84;
+}
 
 
 /* ---------------------------------------------------------- */
@@ -326,8 +304,15 @@ body {
 
 .final-order-container {
   width: 100%;
-  height: auto;
-  background: url(https://res.cloudinary.com/escambalapp/image/upload/v1570512135/escambal-app-folder/css.images/high-quality-photo_ht208x.jpg)
+  display: flex;
+  flex-flow: column wrap;
+  font-size: 40px;
+  color: white;
+  background-color: #37585B;
+  justify-content: center;
+  height: 600px;
+  border: solid 10px #F7C331;
+  text-align: center;
 }
 
 /* ---------------------------------------------------------- */

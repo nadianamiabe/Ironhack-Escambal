@@ -62,7 +62,23 @@
         </div>
 
     <div class="all-products-container">
-        {{#each filteredProducts}}
+    {{#each filteredProducts}}
+        <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="{{imageUrl}}" alt="Card image cap" height="200" width="200">
+        <div class="card-body">
+                    <h1><a href="/products/{{_id}}" class="all-products-card-text">{{name}}</a></h1>
+                    <p class="all-products-card-text">{{description}}</p>
+                    <p class="all-products-card-text">{{category}}</p>
+                    <p class="all-products-card-text">{{quantity}}</p>
+        </div>
+        </div>
+        {{/each}}
+
+    </div>
+    </div>
+</div>
+</div>
+        {{!-- {{#each filteredProducts}}
             <div class="all-products-container">
                 <div class="all-products-card">
                     <img src="{{imageUrl}}" alt="product-image" width="120" height="120">
@@ -70,44 +86,5 @@
                     <p class="all-products-card-text">{{description}}</p>
                     <p class="all-products-card-text">{{category}}</p>
                     <p class="all-products-card-text">{{quantity}}</p>
-        {{/each}}
-                </div>
-            </div>
-    </div>
-</div>
-   
 
-{{!-- <div id="meuModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-
-        <!-- Conteúdo do modal-->
-        <div class="modal-content">
-
-            <!-- Cabeçalho do modal -->
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-
-            <!-- Corpo do modal -->
-            <div class="modal-body">
-                <form action="/login" method="POST">
-                    <input type="text" name="email" placeholder="Email">
-                    <br>
-                    <input type="password" name="password" placeholder="Senha">
-                    <br>
-                    {{#if errorMessage}}
-                    <p>{{errorMessage}}</p>
-                    {{/if}}
-                    <button class="crazy-button" type="submit">Entrar</button>
-                </form>
-            </div>
-
-            <!-- Rodapé do modal-->
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
-            </div>
-
-        </div>
-    </div>
-</div> --}}
-</div>
+        {{/each}} --}}
