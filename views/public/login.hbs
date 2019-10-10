@@ -1,35 +1,45 @@
-<section class="login-section">
-    <div class="login">
-        <h1>Login</h1>
-        <form action="/login" method="POST">
-            <input type="text" name="email" placeholder="Email">
-            <br>
-            <input type="password" name="password" placeholder="Senha">
-            <br>
-            {{#if errorMessage}}
-            <p>{{errorMessage}}</p>
-            {{/if}}
-            <button class="crazy-button" type="submit">Login</button>
-        </form>
+<div class="login-container">
+<div class="card bg-dark text-white">
+  <img class="card-img" src="https://res.cloudinary.com/escambalapp/image/upload/v1570512135/escambal-app-folder/css.images/photo-1536082555308-99948d5c8ecf_syyipb.jpg" alt="Card image">
+  <div class="card-img-overlay">
+    <div class="login-card-container">
+    <section class="login-section">
+        <div class="login">
+            <h1 class="login-text-login">Login</h1>
+            <form action="/login" method="POST">
+                <input type="text" name="email" placeholder="Email">
+                <br>
+                <input type="password" name="password" placeholder="Senha">
+                <br>
+                {{#if errorMessage}}
+                <p>{{errorMessage}}</p>
+                {{/if}}
+                <button class="crazy-button" type="submit">Login</button>
+            </form>
 
-        <div class="modal" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Modal title</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <p>Modal body text goes here.</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
+            <div class="modal" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Modal title</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Modal body text goes here.</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+    </section>
     </div>
-</section>
+  </div>
+</div>
+
+</div>
