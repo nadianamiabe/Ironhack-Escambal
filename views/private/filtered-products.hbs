@@ -1,40 +1,34 @@
-<div class="topnav" id="myTopnav">
+<div class="my-navbar" id="myTopnav">
 
     <div class="logo">
-        <a href="/home"><img
+        <a href="/"><img
                 src="https://res.cloudinary.com/escambalapp/image/upload/v1570636194/escambal-app-folder/css.images/Copy_of_Untitled_l1ynt5.png"
                 alt="logo"></a>
     </div>
-    <div>
-        <a href="/logout">Logout</a>
+    <div class="my-navbar__items">
+        <a href="/home" class="active">Página inicial</a>
         <a href="/my-profile">Meu perfil</a>
         <a href="/home/about">Nossa história</a>
         <a href="/home/products">Descubra produtos</a>
-        <a href="/home" class="active">Página inicial</a>
-        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-            <i class="fa fa-bars"></i>
-        </a>
+        <a href="/logout">Logout</a>
+    </div>
+    <div class="my-navbar__toggle">
+        <div class="one"></div>
+        <div class="two"></div>
+        <div class="three"></div>
     </div>
 </div>
-{{!-- 
-{{#each products}}
-<img src="{{imageUrl}}" alt="product-image" width="200">
-<h1><a href="/products/{{_id}}">{{name}}</a></h1>
-<p>{{description}}</p>
-<p>{{category}}</p>
-<p>{{quantity}}</p>
 
-{{/each}} --}}
 
- <div class="all-products-container">
+<div class="all-products-container">
     {{#each products}}
-        <div class="card" style="width: 18rem;">
+    <div class="card" style="width: 18rem;">
         <img class="card-img-top" src="{{imageUrl}}" alt="Card image cap" height="200" width="200">
         <div class="card-body">
-                    <h1><a href="/products/{{_id}}" class="all-products-card-text">{{name}}</a></h1>
-                    <p class="all-products-card-text">{{description}}</p>
-                    <p class="all-products-card-text">{{category}}</p>
-                    <p class="all-products-card-text">{{quantity}}</p>
+            <h1><a href="/products/{{_id}}" class="all-products-card-text">{{name}}</a></h1>
+            <p class="all-products-card-text">{{description}}</p>
+            <p class="all-products-card-text">{{category}}</p>
+            <p class="all-products-card-text">{{quantity}}</p>
         </div>
-        </div>
-        {{/each}}
+    </div>
+    {{/each}}
