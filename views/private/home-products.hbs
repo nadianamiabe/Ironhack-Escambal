@@ -1,24 +1,26 @@
-<div class="topnav" id="myTopnav">
+<div class="my-navbar" id="myTopnav">
 
     <div class="logo">
-        <a href="/home"><img
+        <a href="/"><img
                 src="https://res.cloudinary.com/escambalapp/image/upload/v1570636194/escambal-app-folder/css.images/Copy_of_Untitled_l1ynt5.png"
                 alt="logo"></a>
     </div>
-    <div>
-        <a href="/logout">Logout</a>
-        <a href="/my-profile">Meu perfil</a>
-        <a href="/about">Nossa história</a>
-        <a href="/home/products">Descubra produtos</a>
+    <div class="my-navbar__items">
         <a href="/home" class="active">Página inicial</a>
-        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-            <i class="fa fa-bars"></i>
-        </a>
+        <a href="/my-profile">Meu perfil</a>
+        <a href="/home/about">Nossa história</a>
+        <a href="/home/products">Descubra produtos</a>
+        <a href="/logout">Logout</a>
+    </div>
+    <div class="my-navbar__toggle">
+        <div class="one"></div>
+        <div class="two"></div>
+        <div class="three"></div>
     </div>
 </div>
-<form class="form" action="/home/products" method="POST">
+<form action="/home/products" class="form products__filter" method="POST">
     {{!-- <input type="text" name="category" placeholder="Filtre por categorias"> --}}
-    <select name="category" id="category">
+    <select name="category" id="category" class="form-control">
         <option value="Eletrônicos e materiais de escritório">Eletrônicos e materiais de escritório</option>
         <option value="Esporte e Lazer">Esporte e Lazer</option>
         <option value="Vestuário e Acessórios">Vestuário e Acessórios</option>
@@ -26,28 +28,19 @@
         <option value="Beleza e Cuidados pessoais">Beleza e Cuidados pessoais</option>
         <option value="Outros">Outros</option>
     </select>
-    <button type="submit">Filtrar</button>
+    <button type="submit" class="btn btn-secondary">Filtrar</button>
 </form>
 
 
-{{!-- 
-{{#each filteredProducts}}
-<img src="{{imageUrl}}" alt="product-image" width="200">
-<h1><a href="/products/{{_id}}">{{name}}</a></h1>
-<p>{{description}}</p>
-<p>{{category}}</p>
-<p>{{quantity}}</p>
 
-{{/each}} --}}
- <div class="all-products-container">
+<div class="all-products__container">
     {{#each filteredProducts}}
-        <div class="card" style="width: 18rem;">
-        <img class="card-img-top" src="{{imageUrl}}" alt="Card image cap" height="200" width="200">
-        <div class="card-body">
-                    <h1><a href="/products/{{_id}}" class="all-products-card-text">{{name}}</a></h1>
-                    <p class="all-products-card-text">{{description}}</p>
-                    <p class="all-products-card-text">{{category}}</p>
-                    <p class="all-products-card-text">{{quantity}}</p>
+    <div class="card">
+        <img class="card__image" src="{{imageUrl}}" alt="{{name}}" height="200" width="200">
+        <div class="card__body">
+            <h1 class="card__title"><a href="/products/{{_id}}" class="card__text">{{name}}</a></h1>
+            <p class="card__text card__description">{{description}}</p>
         </div>
-        </div>
-        {{/each}}
+    </div>
+    {{/each}}
+</div>

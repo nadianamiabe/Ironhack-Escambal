@@ -1,41 +1,46 @@
-<div class="topnav" id="myTopnav">
+<div class="my-navbar" id="myTopnav">
 
     <div class="logo">
-        <a href="/home"><img
+        <a href="/"><img
                 src="https://res.cloudinary.com/escambalapp/image/upload/v1570636194/escambal-app-folder/css.images/Copy_of_Untitled_l1ynt5.png"
                 alt="logo"></a>
     </div>
-    <div>
-        <a href="/logout">Logout</a>
+    <div class="my-navbar__items">
+        <a href="/home" class="active">Página inicial</a>
         <a href="/my-profile">Meu perfil</a>
         <a href="/home/about">Nossa história</a>
         <a href="/home/products">Descubra produtos</a>
-        <a href="/home" class="active">Página inicial</a>
-        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-            <i class="fa fa-bars"></i>
-        </a>
+        <a href="/logout">Logout</a>
+    </div>
+    <div class="my-navbar__toggle">
+        <div class="one"></div>
+        <div class="two"></div>
+        <div class="three"></div>
     </div>
 </div>
-<div class="my-products-page">
-    <div class="add-product-tag">
-        <h1><a href="/my-products/insert-product">Adicione um produto</a></h1>
-    </div>
+<div class="my-products__page">
+    <button type="button" class="btn btn-secondary btn-lg btn-block"><a href="/my-products/insert-product">Adicione um
+            produto</a></button>
 
-    <div class="my-products-container">
+    <div class="my-products__container">
 
-        {{#each filteredProducts}}
-        <div class="products-container">
-            <div class="product-card">
-                <img src="{{imageUrl}}" alt="product-image" width="120" height="120">
-                <h1><a href="/my-products/{{_id}}" class="product-card-text">{{name}}</a></h1>
-                {{!-- <p>{{description}}</p> --}}
-                <p class="product-card-text">{{category}}</p>
-                <p class="product-card-text">Qtd:{{quantity}}</p>
+        <div class="all-products__container">
+            {{#each filteredProducts}}
+            <div class="card">
+                <img class="card__image" src="{{imageUrl}}" alt="{{name}}" height="200" width="200">
+                <div class="card__body">
+                    <h1 class="card__title"><a href="/my-products/{{_id}}" class="card__text">{{name}}</a></h1>
+                    <p class="card__text card__description">{{description}}</p>
+                </div>
+                <div class="card__button-container">
+
+                    <button type="button" class="btn btn-secondary"><a
+                            href="/my-products/{{_id}}/edit" />Editar</a></button>
+                    <button type="button" class="btn btn-danger"><a
+                            href="/my-products/{{_id}}/delete" />Deletar</a></button>
+                </div>
             </div>
-
-            <button><a href="/my-products/{{_id}}/edit" />Editar</a></button>
-            <button><a href="/my-products/{{_id}}/delete" />Deletar</a></button>
+            {{/each}}
         </div>
-        {{/each}}
     </div>
 </div>
