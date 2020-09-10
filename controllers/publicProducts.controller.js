@@ -3,7 +3,6 @@ const Product = require("../models/Product");
 
 const showProducts = async (req, res, next) => {
   const products = await Product.find();
-
   try {
     const filteredProducts = products.filter(
       product => product.status === "Disponível"
@@ -19,7 +18,8 @@ const filteredProducts = async (req, res) => {
   try {
     const products = await Product.find();
     const filteredProducts = products.filter(product =>
-      product.category.toLowerCase().includes(category.toLowerCase())
+      product.category.toLowerCase().includes(category.toLowerCase()) && 
+      product.status === "Disponível" 
     );
 
     res.render("public/filtered-products", { products: filteredProducts });

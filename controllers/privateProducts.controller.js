@@ -44,9 +44,9 @@ const filteredProducts = async (req, res) => {
 
   try {
     const filteredProducts = usersProducts.filter((product) =>
-      product.category.toLowerCase().includes(category.toLowerCase())
+      product.category.toLowerCase().includes(category.toLowerCase()) && 
+      product.status === "Disponível"
     );
-
     res.render("private/filtered-products", { products: filteredProducts });
   } catch (error) {
     console.log(error);
