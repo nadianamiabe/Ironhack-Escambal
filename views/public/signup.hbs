@@ -1,80 +1,71 @@
-<div class="topnav" id="myTopnav">
+<div class="my-navbar" id="myTopnav">
 
     <div class="logo">
-    <a href="/"><img src="https://res.cloudinary.com/escambalapp/image/upload/v1570636194/escambal-app-folder/css.images/Copy_of_Untitled_l1ynt5.png" alt="logo"></a>
-        </div>
-    <div>
-        <a href="#" class="" data-toggle="modal" data-target="#meuModal">Login</a>
-            <div id="meuModal" class="modal fade" role="dialog">
-                <div class="modal-dialog">
-                        <!-- Conteúdo do modal-->
-                        <div class="modal-content">
-
-                        <!-- Cabeçalho do modal -->
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        </div>
-
-                        <!-- Corpo do modal -->
-                        <div class="modal-body">
-                            <form action="/login" method="POST">
-                                <input type="text" name="email" placeholder="Email">
-                                <br>
-                                <input type="password" name="password" placeholder="Senha">
-                                <br>
-                                    {{#if errorMessage}}
-                                <p>{{errorMessage}}</p>
-                                    {{/if}}
-                                <button class="crazy-button" type="submit">Entrar</button>
-                            </form>
-                        </div>
-                        <!-- Rodapé do modal-->
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-                <a href="/signup" class="active">Crie sua conta!</a>
-                <a href="/about">Nossa história</a>
-                <a href="/products">Nossos produtos</a>
-                <a href="/" class="active">Página inicial</a>
-                <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-                    <i class="fa fa-bars"></i>
-                </a>
-        </div>
-</div>
-<section class="login-section">
-    <div class="login">
-        <h1>Signup</h1>
-        <form action="/signup" method="POST">
-            <input type="text" name="name" placeholder="Digite seu nome.">
-            <br>
-            <input type="text" name="email" placeholder="Email.">
-            <br>
-            <input type="password" name="password" placeholder="Crie sua senha.">
-            <br>
-            <input type="number" name="cpf" placeholder="Digite seu CPF.">
-            <br>
-            <input type="text" name="state" placeholder="Estado">
-            <br>
-            <input type="text" name="city" placeholder="Digite sua cidade.">
-            <br>
-            <input type="text" name="road" placeholder="Rua.">
-            <br>
-            <input type="number" name="number" placeholder="Número.">
-            <br>
-            <input type="text" name="complement" placeholder="Complemento.">
-            <br>
-            <input type="text" name="cep" placeholder="CEP">
-            <br>
-            <input type="number" name="phoneNumber" placeholder="(DDD)XXXXXXXXX">
-            <br>
-
-            {{#if errorMessage}}
-            <p>{{errorMessage}}</p>
-            {{/if}}
-            <button class="crazy-button" type="submit">Registre sua conta</button>
-        </form>
+        <a href="/"><img
+                src="https://res.cloudinary.com/escambalapp/image/upload/v1570636194/escambal-app-folder/css.images/Copy_of_Untitled_l1ynt5.png"
+                alt="logo"></a>
     </div>
-</section>
+    <div class="my-navbar__items">
+        <a href="/" class="active">Página inicial</a>
+        <a href="/about" class="active">Nossa história</a>
+        <a href="/products">Nossos produtos</a>
+        <a href="/signup">Crie sua conta!</a>
+        <a href="/login">Login</a>
+    </div>
+    <div class="my-navbar__toggle">
+        <div class="one"></div>
+        <div class="two"></div>
+        <div class="three"></div>
+    </div>
+</div>
+<div class="signup__container">
+    <div class="signup__content">
+        <h1 class="signup__title">Bem vindo ao Escambal</h1>
+        <div class="signup-form__container">
+            <form action="/signup" method="POST" class="signup-form__content">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="name" placeholder="Nome">
+                </div>
+
+                <div class="form-group">
+                    <input type="text" class="form-control" name="email" placeholder="Email">
+                </div>
+
+                <div class="form-group">
+                    <input type="password" class="form-control" name="password" placeholder="Crie sua senha">
+                </div>
+
+                <div class="form-group">
+                    <input type="number" class="form-control" name="cpf" placeholder="CPF">
+                </div>
+
+                <div class="form-group signup-form__input-group">
+                    <input type="text" class="form-control" name="state" placeholder="Estado">
+                    <input type="text" class="form-control" name="city" placeholder="Cidade">
+                </div>
+
+                <div class="form-group">
+                    <input type="text" class="form-control" name="road" placeholder="Endereço">
+                </div>
+
+                <div class="form-group signup-form__input-group">
+                    <input type="number" class="form-control" name="number" placeholder="Número">
+                    <input type="text" class="form-control" name="complement" placeholder="Complemento">
+                </div>
+
+                <div class="form-group">
+                    <input type="text" class="form-control" name="cep" placeholder="CEP">
+                </div>
+
+                <div class="form-group">
+                    <input type="number" class="form-control" name="phoneNumber" placeholder="Celular">
+                </div>
+
+                {{#if errorMessage}}
+                <p>{{errorMessage}}</p>
+                {{/if}}
+                <button class="btn btn-secondary btn-lg btn-block" type="submit">Salvar</button>
+            </form>
+        </div>
+    </div>
+</div>

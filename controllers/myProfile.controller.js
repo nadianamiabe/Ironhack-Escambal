@@ -45,6 +45,7 @@ const editImage = async (req, res, next) => {
 
   try {
     const profile = await User.findById(id);
+    console.log(profile);
     res.render("private/edit-image", profile);
   } catch (error) {
     console.log(error);
@@ -70,13 +71,13 @@ const myOffers = async (req, res, next) => {
 
   try {
     const orders = await Order.find({
-      userId: currentUser
+      userId: currentUser,
     })
       .populate("userProducts")
       .populate("myProducts")
       .populate("myUser");
 
-    const filteredOrders = orders.filter(order => order.accept === false);
+    const filteredOrders = orders.filter((order) => order.accept === false);
 
     res.render("private/my-offers", { filteredOrders });
   } catch (error) {
@@ -92,7 +93,7 @@ const order = async (req, res, next) => {
     const userProduct = await Product.find({ user: userId });
 
     const filteredProducts = userProduct.filter(
-      product => product.status === "Disponível"
+      (product) => product.status === "Disponível"
     );
 
     res.render("private/order", { productOrder, filteredProducts });
@@ -111,7 +112,7 @@ const newOrder = async (req, res, next) => {
   const body = req.body;
   const keys = Object.keys(req.body);
 
-  keys.forEach(key => {
+  keys.forEach((key) => {
     if (body[key] === "on") {
       myProducts.push(key);
     }
@@ -121,13 +122,13 @@ const newOrder = async (req, res, next) => {
     myProducts,
     userProducts,
     userId,
-    myUser: req.session.currentUser._id
+    myUser: req.session.currentUser._id,
   });
   newOrder.save().then(async () => {
     console.log(`Order ${newOrder} created`);
-    myProducts.forEach(async product => {
+    myProducts.forEach(async (product) => {
       await Product.findByIdAndUpdate(product, {
-        status: "Pendente"
+        status: "Pendente",
       });
     });
 
@@ -139,8 +140,8 @@ const newOrder = async (req, res, next) => {
       service: "gmail",
       auth: {
         user: $usuario,
-        pass: $senha
-      }
+        pass: $senha,
+      },
     });
     const $destinatario = offerUser.email;
 
@@ -156,10 +157,10 @@ const newOrder = async (req, res, next) => {
 
       Atenciosamente,
       Equipe Escambal.
-      `
+      `,
     };
     transporter
-      .sendMail(mailOptions, function(error, info) {
+      .sendMail(mailOptions, function (error, info) {
         if (error) {
           console.log(error);
         } else {
@@ -168,7 +169,7 @@ const newOrder = async (req, res, next) => {
 
         res.redirect("/final-order");
       })
-      .catch(err => {
+      .catch((err) => {
         res.render("private/home");
         console.log(err);
       });
@@ -179,9 +180,9 @@ const declineOrder = async (req, res) => {
   const { id } = req.params;
   try {
     const orders = await Order.findById(id);
-    orders.myProducts.forEach(async product => {
+    orders.myProducts.forEach(async (product) => {
       await Product.findByIdAndUpdate(product, {
-        status: "Disponível"
+        status: "Disponível",
       });
     });
 
@@ -199,20 +200,20 @@ const acceptOrder = async (req, res) => {
   try {
     const order = await Order.findById(id);
 
-    order.myProducts.forEach(async product => {
+    order.myProducts.forEach(async (product) => {
       await Product.findByIdAndUpdate(product, {
-        status: "Indisponível"
+        status: "Indisponível",
       });
     });
 
-    order.userProducts.forEach(async product => {
+    order.userProducts.forEach(async (product) => {
       await Product.findByIdAndUpdate(product, {
-        status: "Indisponível"
+        status: "Indisponível",
       });
     });
 
     const updatedOrder = await Order.findByIdAndUpdate(order, {
-      accept: true
+      accept: true,
     });
 
     res.redirect("/my-profile/my-offers");
@@ -227,9 +228,9 @@ const cancelOrder = async (req, res) => {
   try {
     const orders = await Order.findById(id);
 
-    orders.myProducts.forEach(async product => {
+    orders.myProducts.forEach(async (product) => {
       await Product.findByIdAndUpdate(product, {
-        status: "Disponível"
+        status: "Disponível",
       });
     });
 
@@ -279,5 +280,5 @@ module.exports = {
   acceptOrder,
   cancelOrder,
   userProfile,
-  about
+  about,
 };

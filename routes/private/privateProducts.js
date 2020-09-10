@@ -15,10 +15,12 @@ const {
   myProductsDetails,
   deleteMyProduct,
   editMyProducts,
-  editMyProductsPost
+  editMyProductsPost,
+  about,
 } = require("../../controllers/privateProducts.controller");
 
 router.get("/home", home);
+router.get("/home/about", about);
 router.get("/home/products", showProducts);
 router.post("/home/products", filteredProducts);
 router.get("/products/:id", userProductDetails);
