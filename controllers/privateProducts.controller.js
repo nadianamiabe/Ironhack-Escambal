@@ -20,7 +20,7 @@ const showProducts = async (req, res) => {
     }
 
     const filteredProducts = usersProducts.filter(
-      product => product.status === "Disponível"
+      (product) => product.status === "Disponível"
     );
 
     res.render("private/home-products", { filteredProducts });
@@ -43,7 +43,7 @@ const filteredProducts = async (req, res) => {
   }
 
   try {
-    const filteredProducts = usersProducts.filter(product =>
+    const filteredProducts = usersProducts.filter((product) =>
       product.category.toLowerCase().includes(category.toLowerCase())
     );
 
@@ -75,7 +75,7 @@ const myProducts = async (req, res, next) => {
     const products = await Product.find({ user: userId });
 
     const filteredProducts = products.filter(
-      product => product.status === "Disponível"
+      (product) => product.status === "Disponível"
     );
     res.render("private/my-products", { filteredProducts });
   } catch (error) {
@@ -88,13 +88,13 @@ const pendingProducts = async (req, res, next) => {
 
   try {
     const orders = await Order.find({
-      myUser: currentUser
+      myUser: currentUser,
     })
       .populate("userProducts")
       .populate("myProducts")
       .populate("myUser");
 
-    const filteredOrders = orders.filter(order => order.accept === false);
+    const filteredOrders = orders.filter((order) => order.accept === false);
 
     res.render("private/pending", { filteredOrders });
   } catch (error) {
@@ -116,7 +116,7 @@ const insertProductPost = async (req, res, next) => {
     quantity,
     category,
     user: req.session.currentUser._id,
-    imageUrl
+    imageUrl,
   });
   newProduct
     .save()
@@ -124,7 +124,7 @@ const insertProductPost = async (req, res, next) => {
       console.log(`Product ${newProduct} created`);
       res.redirect(`my-profile/my-products/`);
     })
-    .catch(error => {
+    .catch((error) => {
       res.render("private/insertProduct");
       console.log(error);
     });
@@ -172,6 +172,10 @@ const editMyProductsPost = async (req, res, next) => {
   }
 };
 
+const about = (req, res) => {
+  res.render("private/about");
+};
+
 module.exports = {
   home,
   showProducts,
@@ -184,5 +188,6 @@ module.exports = {
   myProductsDetails,
   deleteMyProduct,
   editMyProducts,
-  editMyProductsPost
+  editMyProductsPost,
+  about,
 };
